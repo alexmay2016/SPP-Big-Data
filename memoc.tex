@@ -201,12 +201,11 @@ Another shortcoming of the current proposals is that it they may not be easy to 
 
 \subsubsection*{Preliminary Work of the PIs}
 
-\paragraph{Memory-efficient LPN algorithm}
+\input{preliminary_am}
+\input{preliminary_mf}
 
-\paragraph{Asymptotic Complexity Analysis of LWE}
 
-\paragraph{Key Exchange}
-We have extensively contributed to the analyses of the (Diffie-Hellman based) TLS protocols \cite{}
+
 
 \subsection{Project-related publications}
 
@@ -302,6 +301,10 @@ Project part A describes the work programme associated to Marc Fischlin,
 Project part B describes the work programme of Alexander May. Part C is a joint part.
 The duration of the individual work packages and their dependencies are described in
 Figure~\ref{fig:WPs}.
+
+
+\input{workpackages_am}
+\input{workpackages_mf}
 
 
 \subsubsection{Work package A.1: Fundamental Operations on Encrypted Data}
@@ -429,7 +432,7 @@ Not applicable.
 \begingroup
 \renewcommand{\section}[2]{}% eliminatinf reference section title / dirty hack
 
-\begin{thebibliography}{ABCD}
+%\begin{thebibliography}{ABCD}
 
 %\item[] \hspace{-0.6cm} Own work is marked with *.
 
@@ -437,9 +440,10 @@ Not applicable.
 %\marginparwidth 1pt
 
 %\def\shortbib{0}
-%\bibliographystyle{abbrv}
-%\bibliography{bib}
+\bibliographystyle{plain}
+\bibliography{lit,local_bib}
 
+\iffalse
 \bibitem[ABMRS13]{dedup2}
 Martin Abadi, Dan Boneh, Ilya Mironov, Ananth Raghunathan and Gil Segev:
 Message-Locked Encryption for Lock-Dependent Messages. CRYPTO 2013, LNCS, Springer, 2013.
@@ -616,8 +620,9 @@ A.~Sahai and B.~Waters.
 %cuckoo hashing and oblivious ram simulation. CoRR,
 %abs/1007.1259, 2010.
 
+\fi
 
-\end{thebibliography}
+%\end{thebibliography}
 
 \endgroup
 
@@ -734,15 +739,15 @@ at internationally renowned conferences and workshops (where we assume 1,500 EUR
 
 \noindent
 {\bf Marc Fischlin}, Dr.rer. nat \\
-Heisenberg-W3-Professor (till June 2014, up for evaluation for tenure)\\
-Postdoc TU Darmstadt (tenured, on sabbatical for Heisenberg Professorship)\\
+W3-Professor\\
+%Postdoc TU Darmstadt (tenured, on sabbatical for Heisenberg Professorship)\\
 Year of birth: 1973, Nationality: German\\[0.3cm]
 Cryptography and Complexity Theory\\
 Department of Computer Science\\
 Technische Universit\"at Darmstadt\\
 Karolinenplatz 5, 64289 Darmstadt, Germany\\[0.3ex]
-Phone office: +49-(0)6151/16-3337\\
-Fax office: +49-(0)6151-16-72156\\
+Phone office: +49-(0)6151/16-25730\\
+Fax office: +49-(0)6151-16-22487\\
 E-Mail: marc.fischlin@cryptoplexity.de \\[0.3cm]
 Privat address: Charlotte-Posenenske-Str.58, 65197 Wiesbaden\\
 Phone private: +49-(0)611/9882730\\ \\
@@ -777,13 +782,17 @@ Not applicable.
 %List only those individuals who will work on the project but will not be paid out of the project funds. State each person’s name, academic title, employment status, and type of funding.
 \textbf{TU Darmstadt:}
 \begin{itemize}
-\item Prof. Dr. Marc Fischlin, Chair for Cryptography and Complexity Theory (funded through Heisenberg-Program FI 940/3-1 of DFG) 
-\item Dr. Pooya Farshim (funded through Heisenberg grant FI 940-1/1)
-\item Dipl.-Inform. Paul Baecher (funded through Heisenberg grant FI 940-1/1)
-\item M.Sc.(Math) Tommaso Gagliardoni (funded through BMBF Security Competence Center EC SPRIDE) 
-\item M.Sc.(CS), M.Sc.(IT Security) Felix G\"unther (funded through BMBF Security Competence Center EC SPRIDE) 
-\item M.Sc.(Math) Giorgia Azzurra Marson  (funded through State Hesse, LOEWE center CASED) 
-\item M.Sc.(CS) Arno Mittelbach (funded through State Hesse, LOEWE center CASED) 
+\item Prof. Dr. Marc Fischlin, Chair for Cryptography and Complexity Theory %(funded through Heisenberg-Program FI 940/3-1 of DFG) 
+%\item Dr. Pooya Farshim (funded through Heisenberg grant FI 940-1/1)
+%\item Dipl.-Inform. Paul Baecher (funded through Heisenberg grant FI 940-1/1)
+\item M.Sc.(Math) Jacqueline Brendel (funded through DFG Doctoral College 2050 Privacy and Trust for Mobile Users)
+\item M.Sc.(Math) Victoria Fehr (funded through TU Darmstadt)
+\item M.Sc.(Math) Tommaso Gagliardoni (funded through BMBF/Hesse Security Competence Center CRISP) 
+\item M.Sc.(CS), M.Sc.(CS) Felix G\"unther (funded through DFG Collaborative Research Center 1119 CROSSING)
+\item M.Sc.(Math) Christian Janson (funded through TU Darmstadt) 
+\item M.Sc.(Math) Giorgia Azzurra Marson  (funded through DFG Collaborative Research Center 1119 CROSSING)
+\item M.Sc.(CS) Sogol Mazahero (funded through TU Darmstadt)
+%\item M.Sc.(CS) Arno Mittelbach (funded through State Hesse, LOEWE center CASED) 
 \end{itemize}
 Support: 1 secretary.
 
@@ -813,8 +822,9 @@ Support: 1 secretary and 1 technical assistant.
 \textbf{Marc Fischlin:}
 %
 \begin{itemize}
-\item Dr. Sebastian Gajek (NEC Research, Heidelberg)
-\item Dr. \"Ozg\"ur Dagdelen/Prof. Dr. Johannes Buchmann (TU Darmstadt)
+\item Prof.~Kenny Paterson (RHUL, UK)
+\item Prof.~Douglas Stebila (McMaster University, Canada)
+\item Prof.~Bogdan Warinschi (U Bristol, UK)
 \end{itemize}
 
 \noindent
@@ -833,11 +843,14 @@ Support: 1 secretary and 1 technical assistant.
 
 \textbf{Marc Fischlin:}
 \begin{itemize}
-\item Professors Johannes Buchmann and Stefan Katzenbeisser (TU Darmstadt, Germany)
-\item Professor Mark Manulis (University of Surrey, UK)
-\item Dr.~Werner Stefan (DFKI Saarb\"ucken, Germany)
-\item Jun.-Prof.~Dominique Schr\"oder (Saarland University, Germany)
-\item Professors Nigel Smart, Martijn Stam, Bogdan Warinschi (University of Bristol, UK)
+\item Prof.~Michael Backes (U Saarland, Germany)
+\item Dr.~David Bernhard, Prof.~Bogdan Warinschi (U Bristol, UK)
+\item Dr.~Jean Paul Degabriele, Prof.~Kenny Paterson (RHUL, UK)
+\item Prof.~Amir Herzberg (Tel-Aviv University)
+\item Dr.~Anja Lehmann (IBM Zurich, Switzerland)
+\item Prof.~Krzysztof Pietrzak (IST, Austria)
+\item Dr.~Benedikt Schmidt (IMDEA, Madrid, Spain)
+\item Prof.~Dominique Schr\"oder (U N\"urnberg-Erlangen, Germany)
 \end{itemize}
 
 \noindent
@@ -852,10 +865,8 @@ Support: 1 secretary and 1 technical assistant.
 
 \subsection{Scientific equipment}
 
-Besides standard equipment the project partners need to be able to carry out
-the experiments with MapReduce. Since the computing center of TU Darmstadt currently
-does not offer such a service, and for easier collaborations, we have chosen
-Amazon's elastic MapReduce as a common platform.
+Besides standard equipment the project partners 
+\textbf{ich brauche nix besonderes!!!!}
 
 
 \subsection{Project-relevant interests in commercial enterprises}
@@ -868,8 +879,7 @@ Not applicable.
 %If applicable, please list proposals requesting major instrumentation and/or those previously submitted to a third party here.
 
 
-We have not requested funding for this project from any other sources. In the event that we
-submit such a request, we will inform the Deutsche Forschungsgemeinschaft immediately.
+We have not requested funding for this project from any other sources. In the event that we submit such a request, we will inform the Deutsche Forschungsgemeinschaft immediately.
 
 The DFG liaison officer's of TU Darmstadt and Ruhr-University Bochum will be informed of this research funding request.
 
