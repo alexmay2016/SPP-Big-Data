@@ -81,6 +81,12 @@ Alexander May, Ruhr Universit\"at Bochum\\
 \subsection{Applicants}
 \fi
 
+\textbf{BEMERKUNGEN:\\
+*Ich habe den Twist jetzt gelegt auf: Wir schauen uns LPN+Co an bzgl Speicher, aber auch was das in der Anwendung (Key Exchange) bedeutet\\[1ex]
+*Es ware nicht schlecht, wenn wir noch ein paar Links setzen wuerden (Meyer $\to$  Memory, Eike $\to$ Reduktionen, letzteres waere fur die vermutlich auch nicht schlecht, siehe letztes Mal)\\[1ex]
+*Bei mir fehlen noch die WPs, aber die ergeben sich kanonisch aus den beiden Objectives
+}
+
 \iffalse
 \marc{Ich glaube, das alles da unten bis Summary kommt  jetzt extra}
 
@@ -110,6 +116,8 @@ We apply for a period of 36 months funding, starting in June 2014.
 
 \alex{Muss eventuell gekürzt werden.}
 
+\marc{der einstieg kommt mir etwas zu lang vor; Theoretiker wissen, dass man nach Speicher und Zeit unterscheiden kann, denen muss man nur sagen, dass Krypto bisher immer Zeit macht}
+
 The security of cryptographic primitives is related via reductions to the security of hard problems. A cryptographic security proof states that any successful adversary that breaks a cryptographic protocol $\Pi$ in time $t$ can be translated into an algorithm that breaks a hard problem in time $t'$. In order to instantiate cryptographic protocols $\Pi$ efficiently, one has to first find a tight security proof that closely links $\Pi$ to a hard problem, i.e. a reduction for which $t'$ is not much larger than $t$. Second, one has to make sure that any algorithm for the hard problem runs in time larger than $t'$. 
 %This would then in turn show that there cannot be any adversary for $\pi$, since it would imply a faster algorithm for the hard problem.
 
@@ -120,7 +128,7 @@ Most likely, the majority of reasonable candidates will be based on hard problem
 
 For making such a security claim in a reliable manner, one nowadays studies medium security levels of $50-60$ bits in practical experiments, and then extrapolates via asymptotic formulas to the desired security level. However, current algorithms for LPN and LWE for security level $b$ also require to store $2^b$ samples. This huge amount of data prevents to run experiments even for medium security levels, and thus prevents a reliable prediction of cryptographically secure key sizes.
 
-The current project studies low-memory algorithms for problems in coding and lattice theory. We therefore concentrate on extracting a maximum amount of information of cryptographic oracles  in a streaming-based manner.
+The current project studies low-memory algorithms for problems in coding and lattice theory, and how this translates to the case when these problems are deployed in key exchange protocols. We therefore concentrate on extracting a maximum amount of information of cryptographic oracles  in a streaming-based manner.
 
 
 
@@ -255,44 +263,12 @@ The total duration time of the project is 36 months (3 years). The project durat
 
 \subsection{Objectives}
 
-
-The overall goal of the project is to advance the field of cryptographically-protected processing of big data by
-proposing new cryptographic solutions which match the requirements of this scenario, and by supporting an easy 
-integration of the solutions into the MapReduce framework. To this end the following sub goals should be addressed:
+The overall goal of the project is to advance the field of memory-efficient evaluations for the cryptographic problems LWE and LPN, in order to provide sound security estimates even if  required data exceeds reasonable memory bounds. These problems are primary candidates in NIST's search for future, quantum-secure primitives. The research should be carried out for the problems itself, but also for the deployment of the problems in the important setting of key exchange. To this end the following sub goals should be addressed:
 \begin{description}
- \item[Fundamental Operations for Encrypted Data:]
- The first sub goal is to provide tailor-made solutions for a quite large set of operations, in order
- to preserve privacy. The starting set are relational operations such as union, projection, and intersection. Here
- the problem is to deal with duplicates (which need to be removed for union and projection), relating to the 
- deduplication problem for encrypted cloud storage \cite{dedup}. We also investigate problems related to 
- basic problems such as ``grepping'' and graph algorithms like PageRank (see \cite{LD10}), aiming to exploit special encryption
- schemes like deterministic encryption for performance.
-% machine learning,
-% in particular, how to implement operations based on computing Euclidean distances such as $k$-means or
-% Locally Weighted Linear Regression \cite{ml}. 
-Prototypes will be implemented and tested in MapReduce.
- 
- \item[Fundamental Operations for Authenticated Data:]
- This part of the project shall design digital signature schemes and message authentication scheme which are 
- compatible with known MapReduce applications. As explained, general solutions for the authentication problem
- are still missing ---unlike for the case of encryption--- such that we first aim at specific solutions.
- Our goal is to provide efficient authentication solutions in order to combine them with the
- specific solutions for encryption in the aforementioned case. Since some cases like grepping should be easy,
- our goal is also to investigate some problems related to machine learning,
- in particular, how to implement operations based on computing Euclidean distances such as $k$-means or
- Locally Weighted Linear Regression \cite{ml}. 
-   Again, solutions will be integrated and tested into 
- MapReduce.
- 
-\item[Feasibility of outsourced computation on encrypted data:] 
-While the previous sub goals aim at specific problems, another goal is to provide general solutions.
-Hence, based on the framework of functional encryption identify functionalities which can be efficiently realized on encrypted data in a cloud/outsourced computing scenario. Implement and test those functionalities in MapReduce. 
-
-\item[Cryptography in the streaming model:] Transfer known cryptographic security notions to a streaming/highly parallelized model, where one does not have random access to the whole data. Moreover, the restriction is to (approximately) extract useful information in sublinear/polylogarithmic running time with very limited storage. To test our algorithms, we will choose as a framework Google's MapReduce. 
-
-\item[Enhance cryptographic certification properties:] 
-Since cryptographic means seem to be the only solution for protecting our privacy against security agencies/industrial espionage, we have to make sure that cryptography is designed in a way that does not offer any backdoors by publicly verifiable process. It is important that this certification is compatible with existing cryptographic infrastructure, i.e. that it does not require to renew all existing keys.
-
+ \item[Analyses of existing LWE/LPN-based Protocols:]
+  The idea is to revisit the existing protocols in light of the findings about the memory requirements for LWE and LPN. The goal is to make statements about the security bounds, by verifying if  \marc{to be continued}
+ \item[Combining TLS~1.3 with LWE/LPN:]
+ The objective here is to make LWE- and LPN-based key exchange protocols resemble the TLS~1.3 structure more closely. We expect that this will require to introduce a ``PRF-ODH like'' assumption for these problems. The goals here are thus to (a) devise protocols, (b) give a reduction to a suitable LWE- or LPN-based problem, taking the memory requirements into account, and (c) to evaluate the security of the problem in light of the analyses of the original problems. 
 \end{description}
 
 Besides the scientific advancements we expect our result of be of social and political importance in light of the recent 
