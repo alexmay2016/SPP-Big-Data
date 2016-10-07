@@ -59,6 +59,7 @@
 \newcommand{\map}{\textsf{map}}
 \newcommand{\reduce}{\textsf{reduce}}
 
+\newcommand{\url}[1]{\texttt{#1}}
 
 \begin{document}
 
@@ -176,28 +177,32 @@ In November 2017, the National Institute of Standards and Technology (NIST) will
 \paragraph{Lattice Sieving.}
 
 
-\textbf{da geht es schon teilweise in die Forschung, muss ich nochmal trennen}
 
 \paragraph{Deployment of LPN and LWE in Key Exchange Protocols.}
 Analogously to the problem of determining the necessary resources for mounting attacks, in order to make recommendations for secure choices for the underlying problems, we are interested in the security when these problems are deployed in more complex protocols.
 %influence of the deployment of the problems like LWE and LPN. 
-We are especially interested in securing communication data and the question how we can prevent agencies to decipher data which is stored now and potentially sifted through later, e.g., once quantum computers are available. The connection to the first part of the proposal is via the estimated hardness of potentially quantum-resistant problems such as LPN and LWE. The research in that part will suggest parameter choices withstanding Big Data engineering efforts, such that we can build secure systems and recommend appropriate parameter choices. 
+We are especially interested in securing communication data and the question how we can prevent attackers to decipher data which is stored now and potentially sifted through later, e.g., once quantum computers are available. The connection to the first part of the proposal is via the estimated hardness of potentially quantum-resistant problems such as LPN and LWE. 
+%The research in that part will suggest parameter choices withstanding Big Data engineering efforts, such that we can build secure systems and recommend appropriate parameter choices. 
 
 Securing communication data between two parties typically consists of composing a so-called key exchange protocol with a secure channel protocol.  With the secure key exchange protocol the participants establish a shared cryptographic key, which should be known only to them. Then, this key is used in a secure channel protocol to send the actual data in a confidential and authentic way. 
 
-The focus for securing communication against advanced attacks, especially against quantum cryptanalysis, currently lies on the key exchange part. The reason is twofold. The first reason is that most of the practically deployed key exchange protocols (such as the ones used in TLS~1.2 \cite{} and the future TLS~1.3 \cite{}) rely on number-theoretic problems which are highly amenable to quantum attacks. The best known examples are the paramount Diffie-Hellman based protocols which can be broken in polynomial time by quantum attackers. 
+The focus for securing communication against advanced attacks, especially against quantum cryptanalysis, currently lies on the key exchange part. The reason is twofold. The first reason is that most of the practically deployed key exchange protocols (such as the ones used in TLS~1.2 \cite{TLS12} and the future TLS~1.3 \cite{TLS13}) rely on number-theoretic problems which are highly amenable to quantum attacks. The best known examples are the paramount Diffie-Hellman based protocols which can be broken in polynomial time by quantum attackers. 
 
-\paragraph{Shortcomings of current Key Exchange Protocols}
-Unfortunately, the analyses of the above protocols does not match common standards in the classical setting. Some of the analyses refer to single execution of the key exchange protocol only, as opposed to the standard multi-instance setting in, say, the Bellare-Rogaway model \cite{}. This has a major impact on the quantity of the security guarantees.
-Moreover, the analyses follow the classical choice of investigating primarily the run time and success probability of adversaries, mainly neglecting the memory consumption.
 
-The other aspect is that the protocol analyses neglect the authentication problem. That is, they usually work in the unuathenticated setting and argue that authentication can be added via classically secure signature schemes. Indeed, Bos et al.~\cite{BCDMNNRS16} state that
-\begin{quote}
-``the secrecy of today's communications can be compromised by a quantum computer that is built decades into the future (by an attacker who stores these communications until then); on the other hand, authentication can only be forged at connection time.''
-\end{quote}
-Here, however, it is unclear if breaking the authentication with a quantum computer afterwards could not lead to a break of current executions (since the secrets may still be in use later).
+Concerning efforts to build quantum-resistant key exchange protocol, this area has gained quite some momentum, culminating in proposals to derive such protocols from Ring-LWE \cite{P14,BCNS15,ADPS16} and LWE \cite{BCDMNNRS16}. For the scheme in \cite{ADPS16}, the ``New Hope'' key exchange protocol, Google recently announced to experiment with the scheme in its Chrome browser \cite{Google}. Another recent proposal for a potentially quantum-resistant key echange protocol is based on ideal lattices \cite{ZZDSD15}.
 
-Another shortcoming of the current proposals is that it they may not be easy to integrate into the upcoming TLS~1.3 protocol. While \cite{BCNS15,ADPS16,BCDMNNRS16} argue how this can be done for TLS~1.2 and provide impressive implementation and performance details, the next TLS~1.3 version adds significantly enhanced functional properties such as zero round-trip time steps. It is currently unclear how
+\paragraph{Shortcomings of current LPN-/LWE-based Key Exchange Protocols.}
+
+Unfortunately, most of the proposals have at least one shortcoming. For example, the analysis of New Hope \cite{ADPS16} relies on the classical random oracle model, although it has been argued in \cite{BDFLSZ11} that quantum access to this idealized primitive should be preferred in such settings. Others, such as \cite{BCNS15,BCDMNNRS16} provide security in the ACCE notion of Jager et al.~\cite{JKSS12}, arguing security when the key exchange protocol is composed with an atomic channel. This at the moment excludes a modular analysis if instead a stream-based channel is used (as possible in TLS) \cite{FGMP15}. Moreover, all the analyses follow the classical choice of investigating primarily the run time and success probability of adversaries, mainly neglecting the memory consumption in the  reduction.
+
+
+Most of the aforementioned works  start with the unauthenticated key exchange setting, where parties and transmissions are not authenticated. They argue that this can be accomplished later by adding signatures. Here, however, it is unclear if breaking the authentication with a quantum computer afterwards could not lead to a break of current executions (since the secrets may still be in use later). Furthermore, in some cases this requires some changes to the structure, such that for example \cite{BCNS15,BCDMNNRS16} are, strictly speaking, not compatible to TLS.
+
+
+Another shortcoming of the current proposals is that it they may not be easy to integrate into the upcoming TLS~1.3 protocol. While \cite{BCNS15,ADPS16,BCDMNNRS16} argue how this can be done for TLS~1.2 and provide impressive implementation and performance details, the next TLS~1.3 version adds significantly enhanced functional properties such as zero round-trip time steps. In the Diffie-Hellman setting this often necessitates to switch to other number-theoretic problems, such as the PRF-ODH assumption \cite{JKSS12}. It is unclear what this would mean for LWE- and LPN-based protocols, and if adopting a new assumption, for the memory consumption for this related problem.
+
+
+
 
 \subsubsection*{Preliminary Work of the PIs}
 
@@ -245,11 +250,11 @@ Another shortcoming of the current proposals is that it they may not be easy to 
 
 \subsection{Anticipated total duration of the project}
 
-The total duration time of the project is 36 months (3 years). The project duration spans from the actual project begin
-(presumably June 2014) to 36 months later. Funding of the DFG is requested for the entire duration of 36 months.
+The total duration time of the project is 36 months (3 years). The project duration spans from the actual project begin (presumably June 2017) to 36 months later. Funding of the DFG is requested for the entire duration of 36 months.
 
 
 \subsection{Objectives}
+
 
 The overall goal of the project is to advance the field of cryptographically-protected processing of big data by
 proposing new cryptographic solutions which match the requirements of this scenario, and by supporting an easy 
