@@ -180,9 +180,9 @@ In this proposal we combine the question of memory consumption with a recent dev
 In November 2017, the National Institute of Standards and Technology (NIST) will open a call for candidates of cryptosystems for encryption, signature and key exchange, which are presumably immune to quantum attacks. The candidates will then undergo a period of 3-5 years of cryptanalytic research, before a recommendation is made. Most likely, a majority of these systems will be based on problems from coding and lattice theory, such as Learning Parities with Noise (LPN) and Learning with Errors (LWE). But the currently best algorithms for both problems have a memory consumption which is as large as their running time, making them useless for implementing them even on medium size security levels.
 
 
-\paragraph{BKW algorithm.}
+\paragraph{BKW algorithm.} high memory consumption
 
-\paragraph{Lattice Sieving.}
+\paragraph{Lattice Sieving and LWE.} high memory consumption
 
 
 
@@ -269,72 +269,41 @@ The overall goal of the project is to advance the field of memory-efficient eval
   The idea is to revisit the existing protocols in light of the findings about the memory requirements for LWE and LPN. The goal is to make statements about the security bounds, by verifying if  \marc{to be continued}
  \item[Combining TLS~1.3 with LWE/LPN:]
  The objective here is to make LWE- and LPN-based key exchange protocols resemble the TLS~1.3 structure more closely. We expect that this will require to introduce a ``PRF-ODH like'' assumption for these problems. The goals here are thus to (a) devise protocols, (b) give a reduction to a suitable LWE- or LPN-based problem, taking the memory requirements into account, and (c) to evaluate the security of the problem in light of the analyses of the original problems. 
+ 
+ \item[Memory Efficient LWE Classically and Quantumly.]
+\item[Memory Efficient Lattice Reduction.]
+\item[Practical Cryptanalysis of NIST's Post-Quantum Candidates.]
+\alex{Vorschläge für Dich.}
+\item[Memory Efficient Reductions?] Das hätte Schnitt mit Eike. Wäre vielleicht gar nicht so schlecht.
+\item[Construction of Post-Quantum Candidate?]
+
+
 \end{description}
 
-Besides the scientific advancements we expect our result of be of social and political importance in light of the recent 
-revelations around the NSA affair.
 
 
 \subsection{Work programme incl. proposed research methods}
 
 The work program is split into parts addressed by the individual groups and by joint parts.
-Project part A describes the work programme associated to Marc Fischlin,
-Project part B describes the work programme of Alexander May. Part C is a joint part.
+Project part A describes the work programme associated to Alexander May,
+Project part B describes the work programme of Marc Fischlin. Part C is a joint part.
 The duration of the individual work packages and their dependencies are described in
 Figure~\ref{fig:WPs}.
+
 
 
 \input{workpackages_am}
 \input{workpackages_mf}
 
 
-\subsubsection{Work package A.1: Fundamental Operations on Encrypted Data}
+\subsubsection{Work package A.1: Memory Efficient LWE Classically and Quantumly}
+Extension of our EC submission to LWE.
 
-To achieve the goal of designing efficient solutions for the basic problems for 
-union, projection, and intersection, and the text-based and graph-based problems we
-investigate the potential of deterministic encryption \cite{BBN07}. Informally,
-deterministic encryption ensures that each message has a unique ciphertext, supporting
-equality checks straightforwardly, but such that basically nothing else about ciphertexts is leaked. 
-The disadvantage is, however, that the message needs to be highly entropic in order to guarantee
-security. 
+\subsubsection{Work Package A.2: Memory Efficient Lattice Reduction}
+Based on our ACNS paper. Integration of BKZ tricks. Finding memory-efficient sieving.
 
-The entropy requirement infringes with basic operations like grepping expressions in a large file. The reason
-is that we cannot individually encrypt short chunks of the file and uphold confidentiality, as the entropy
-guarantees may be to given anymore for short parts. The same holds for other operations like computing
-the intersection. Hence, new ways to use deterministic encryption must be found. The approach we plan to investigate
-is to combine deterministic encryption with a mild form of homomorphic encryption. We may
-extract a cryptographic key $k$ from the big data (with high entropy), pseudorandomly derive keys $k_1,k_2,\dots$
-for each chunk of the data, and then encrypt deterministically the chunks of the data, where we append the corresponding 
-key to the data chunk. To search within a chunk one encrypts the key word and the starting key $k_1$ and then
-``moves'' (and homomorphically updates!) this ciphertext across the chunks.
-The challenge here is to find a deterministic encryption scheme and a pseudorandom generator which are 
-compatible and allow to update. Here the scheme by Boldyreva et al.~\cite{BSN08} serves as our starting point,
-but if necessary we may also investigate the potential of fully homomorphic encryption instead.
-
-For the intersection and the similar relational task we may use similar ideas, although here different problems arise
-due to the requirement to remove duplicates. This is also known as the deduplication problem in cloud storage \cite{dedup}.
-Some solutions have been presented in \cite{dedup,dedup2}. We plan to investigate how to improve these solutions,
-especially in light of incrementality, i.e., to compute solutions faster if the data is updated only slightly, and
-to incorporate them into the MapReduce Framework. The final step in this work package is to investigate
-the possibility to derive tailored solutions for graph-based problems, where PageRank serves as an entry point.
-
-
-\subsubsection{Work Package A.2: Fundamental Operations for Authenticated Data}
-
-In this work package we provide solutions for processing big data authentically. As mentioned before, 
-since currently the development of omnipotent authentication methods lacks behind, compared to fully homomorphic
-encryption, and the goal of this project is to make cryptographic methods applicable to MapReduce, our work
-here focuses on designing specific solutions for concrete problems. The solutions should be combined with
-the construction of work package A.1.
-
-As a first step we will investigate
-the applicability of known homomorphic signature schemes like \cite{P2EC:BonFre11,P2PKC:Freeman12,P2PKC:CatFioWar12}
-to the basic relational problems like aggregation; problems like intersection at first glance seem to be straightforward.
-For the graph-based problems like PageRank we will first explore the ability to use transitive signatures \cite{P2RSA:MicRiv02b}. 
-We expect that this will not be applicable in all cases, such that we will develop new signature schemes if necessary.
-For the applications from machine learning like Euclidean distances such as $k$-means or
- Locally Weighted Linear Regression we definitely need to devise new schemes. Our starting point will be schemes
- for related problems. All solutions will be matched to MapReduce, of course.
+\subsection{Work Package A.3: Practical Cryptanalysis of NIST's Post-Quantum Candidates}
+First hits: Frodo and new hope.
 
 %+++ make sure it appears on page 2
 \begin{figure}[t]
@@ -348,39 +317,13 @@ For the applications from machine learning like Euclidean distances such as $k$-
 \caption{{\small Work package durations and dependencies.}}\label{fig:WPs}
 \end{figure}
 
-\subsubsection{Work Package B.1: Feasibility of Outsourced computation on encrypted data}
-The starting point of our work programme in this package is the recent work of Garg et al~\cite{DBLP:journals/iacr/Garg13} that shows how to realize functional encryption. This notion is tightly connected to the {\em obfuscation} of programs. Roughly speaking, obfuscation of a program means that the program preserves its functionality while becoming unintelligible to the outside. It was known for more than 10 years that so-called black-box obfuscation is  impossible~\cite{DBLP:journals/eccc/ECCC-TR01-057}, however a weaker notion called indistinguishable obfuscation is possible for any polynomial-size circuit.
+\subsubsection{Work Package B.1:}
 
-Surprisingly, this weaker notion is already sufficient to achieve {\em functional encryption}, i.e. to allow a key holder to learn a well-specified function of the encrypted data but nothing else. The construction uses a simplification of so-called multi-linear maps~\cite{DBLP:conf/eurocrypt/GargGH13}.
-The work of Garg et al.~immediately raises some open questions that we would like to address.
-\begin{itemize}
-\item Exploit the power of {\em indistinguishable obfuscation}: It comes quite at a surprise that indistinguishable obfuscation is actually enough to realize functional encryption. Given this, what else can be achieved with this notion?
-\item Weaken the complexity assumptions: The construction of {\em indistinguishable obfuscation} requires a heuristic complexity assumption. The question is whether this notion can be achieved by a cryptographic standard assumption.
-\item Improve on Efficiency: Our goal in the project is to realize functionalities that are interesting to compute on big data (e.g. computing statistics). Which functionalities can be realized especially fast. Can we improve on efficiency by restricting on a limited class of functionalities. How fast is the realization when implemented?
-\end{itemize}
+\subsubsection{Work Package B.2:}
 
+\subsubsection{Work Package C.1:}
 
-
-\subsubsection{Work Package B.2: Enhance cryptographic certification properties}
-If the cryptographic realizations of other Work Packages of B.1 are applied in a large scale for big data applications, it is mandatory that users can rely on a guarantee that their data's integrity, confidentiality and privacy are protected. Of course, cryptographic security proofs guarantee this for any efficient adversary, albeit {\em only if the schemes are implemented in a way as originally specified}. E.g. almost all cryptographic heavily rely on (pseudo)randomness in a very strong sense. Namely, the security guarantees might completely collapse if the used bits provide for instance some bias.
-
-Thus in order to guarantee a wide-spread acceptance of cryptography for highly sensitive big data, like medical information, it is mandatory to define ``proofs'' that show that the cryptography was used in a sense as specified. We will proceed in the formalization of these proofs/certification as follows.
-\begin{itemize}
-\item Define a way that formalizes the notion of proof/certification of a cryptographic scheme. Can this only be defined interactively, i.e. does it require a protocol between a prover and a verifier? If yes, how many rounds of interaction do we need in such protocol? If no, how short are the proofs and how efficiently can they be generated and checked?
-\item Which functionalities of a cryptographic scheme can easily be certified? Which ones are hard/impossible to certify? Notice that there must be impossibility results, since certification in its strongest sense provides an equivalence test for two Turing machines, a problem that is known to be undecidable  in general. On the positive side, we already showed in our preliminary work that interesting properties can be certified efficiently.
-\item Which cryptographic schemes allow for an easy embedding of backdoors that enable somebody to decrypt without a secret key? Is there a general tranformation that embeds a trapdoor into a scheme in an oblivious manner? Or is it possible to construct {\em backdoor-free cryptography} in the sense that any scheme that includes a backdoor can be easily detected. 	
-\end{itemize}
-
-\subsubsection{Work Package C.1: Cryptography in the streaming model}
-
-Building on the work in Packages A.1, B.1, and B.2 we plan to study which functionalities can be achieved within some approximation ratio 
-in sublinear time in the encrypted domain. Notice that we are not allowed to decrypted in order to apply standard 
-non-cryptographic solutions to the problem. We would like to stress that such a setting has not been studied in the cryptographic community so far. Hence we have to start from scratch and will proceed in the following way:
-\begin{itemize}
-\item Define a proper cryptographic model that serves as an analogue of the classical streaming model. Study and adapt classical security notions such as indistinguishability of encryptions under CPA/CCA-attacks in the new model. A cryptographic scheme by definition always satisfies two properties, its functionality and the security in a well-defined setting (for any polynomial time adversary). Here, we first start with the security property. We take related notions like on-line encryption \cite{online} into account.
-\item Which of the interesting functionalities of classical streaming algorithms like e.g. heavy hitters, frequency moments or entropy can be transferred to algorithms in the encrypted domain? How does the performance suffer from restricting on encrypted data?
-\item Which of the efficiently realizable functionalities from Project B.1 transfers to the streaming world? How does the approximation guarantee suffer from the streaming model? Classify which functionalities in the encrypted domain are especially suited towards streaming.
-\end{itemize}
+\subsubsection{Work Package C.2:}
 
 \subsection{Data handling}
 
@@ -388,7 +331,7 @@ The results of the theoretical work is planned to be published at conferences, w
 dissemination and availability of the project's results. In addition, we will use the usual electronic archives
 like IACR's \texttt{eprint} service, and the PI's home pages to make full versions available in a lasting way.
 As for experimental data, like software, we will also make these public, as part of the corresponding publication,
-and through electronic archives.
+and through electronic archives like e.g. GitHub.
 
 
 \subsection{Other information}
@@ -424,6 +367,7 @@ Not applicable.
 \bibliographystyle{plain}
 \bibliography{lit,local_bib}
 
+<<<<<<< HEAD
 \iffalse
 \bibitem[ABMRS13]{dedup2}
 Martin Abadi, Dan Boneh, Ilya Mironov, Ananth Raghunathan and Gil Segev:
@@ -618,12 +562,12 @@ A.~Sahai and B.~Waters.
 
 \subsubsection{Funding for Staff}
 
-We apply for the following funding for staff, following the DFG's personal rates for 2013 (DFG-Vordruck 60.12). 
+We apply for the following funding for staff, following the DFG's personal rates for 2016 (DFG-Vordruck 60.12). 
 Due to competitive nature of positions in Computer Science and in the area of IT security, we request
 funding for full doctoral student positions (100\%). We apply for funding of two doctoral
 students for the entire duration of the project. One student will be associated to TU Darmstadt (TUD)
-and work on packages A.1, A.2, and C.1, the other student will be associated to Ruhr-University Bochum (RUB)
-and work on packages B.1, B.2, and C.1. Student Assistents (one for each project partner) have been calculated with 10h/months
+and work on packages B.1, B.2, and C.1, the other student will be associated to Ruhr-University Bochum (RUB)
+and work on packages A.1, A.2, and C.1. Student Assistents (one for each project partner) have been calculated with 10h/months
 for the full duration of the project, with average costs of 11 EUR/h. They should support the implementations
 in the corresponding work packages.
 
@@ -633,12 +577,12 @@ in the corresponding work packages.
 \begin{tabular}{|l||l|l|l||r|r|r|}
  \hline No &  Type & assoc.~to & Description & Y1 & Y2 & Y3\\
  \hline \hline
- 1 & Doctoral Student, 100\%  & TUD & WP A.1,A.2,C.1 & 57,300\euro & 57,300\euro & 57,300\euro \\
- 2 & Doctoral Student, 100\%  & RUB& WP B.1,B.2,C.1 & 57,300\euro & 57,300\euro & 57,300\euro\\
+ 1 & Doctoral Student, 100\%  & TUD & WP B.1, B.2,C.1 & 61,800\euro & 61,800\euro & 61,800\euro \\
+ 2 & Doctoral Student, 100\%  & RUB& WP A.1,A.2,C.1 & 61,800\euro & 61,800\euro & 61,800\euro\\
  3 & Student Assistent, 100\% & TUD & Implementations & 1,320\euro & 1,320\euro & 1,320\euro\\
  4 & Student Assistent, 100\% & RUB & Implementations & 1,320\euro & 1,320\euro & 1,320\euro \\
  \hline
-  & Total Amount  & & & 117,240\euro & 117,240\euro & 117,240\euro\\ \hline 
+  & Total Amount  & & & 126,240\euro & 126,240\euro & 126,240\euro\\ \hline 
 \end{tabular}
 }
 
