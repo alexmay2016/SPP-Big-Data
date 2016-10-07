@@ -84,7 +84,6 @@ Alexander May, Ruhr Universit\"at Bochum\\
 \textbf{BEMERKUNGEN:\\
 *Ich habe den Twist jetzt gelegt auf: Wir schauen uns LPN+Co an bzgl Speicher, aber auch was das in der Anwendung (Key Exchange) bedeutet\\[1ex]
 *Es ware nicht schlecht, wenn wir noch ein paar Links setzen wuerden (Meyer $\to$  Memory, Eike $\to$ Reduktionen, letzteres waere fur die vermutlich auch nicht schlecht, siehe letztes Mal)\\[1ex]
-*Bei mir fehlen noch die WPs, aber die ergeben sich kanonisch aus den beiden Objectives
 }
 
 \iffalse
@@ -116,9 +115,25 @@ We apply for a period of 36 months funding, starting in June 2014.
 
 \alex{Muss eventuell gekürzt werden.}
 
-\marc{der einstieg kommt mir etwas zu lang vor; Theoretiker wissen, dass man nach Speicher und Zeit unterscheiden kann, denen muss man nur sagen, dass Krypto bisher immer Zeit macht}
+\marc{der einstieg kam mir etwas zu lang vor; Theoretiker wissen, dass man nach Speicher und Zeit unterscheiden kann, denen muss man nur sagen, dass Krypto bisher immer Zeit macht}
 
-The security of cryptographic primitives is related via reductions to the security of hard problems. A cryptographic security proof states that any successful adversary that breaks a cryptographic protocol $\Pi$ in time $t$ can be translated into an algorithm that breaks a hard problem in time $t'$. In order to instantiate cryptographic protocols $\Pi$ efficiently, one has to first find a tight security proof that closely links $\Pi$ to a hard problem, i.e. a reduction for which $t'$ is not much larger than $t$. Second, one has to make sure that any algorithm for the hard problem runs in time larger than $t'$. 
+The security of cryptographic protocols is related via reductions to the security of presumably hard problems. Such a reduction transforms any successful adversary against a protocol into one against the underlying problem such that, vice versa, the hardness of the problem implies the hardness of the protocol. In the past, cryptographers used classical number-theoretic problems like the RSA problem or the discrete logarithm problem. But these problems will become insecure once quantum computers become real. It is therefore no surprise that
+the National Institute of Standards and Technology (NIST) announced a call for quantum-resistant cryptographic primitives in autumn 2016.
+
+Most likely, the majority of reasonable candidates for the NIST competition will be based on hard problems from coding theory and lattices, such as Learning Parities with Noise (LPN) and Learning with Errors (LWE). NIST requests well-defined security levels of 128, 192 and 256 bits classically, and 64, 80, 128 bits quantumly. This means that for instantiating LPN with, say, 128 bit classical security, one has to make sure that any algorithm for LPN will need at least $2^{128}$ steps on a classical computer. 
+
+Since running times of $2^{128}$ escape current computational power,
+one nowadays typically studies medium security levels of $50-60$ bits in practical experiments, and then extrapolates via asymptotic formulas to the desired security level to make a reasonable security claim. However, besides running time the memory requirement is also factor. In fact, for the interesting problems LPN and LWE current algorithms also require to store an exponential number of samples. This huge amount of data and its storage requirement do not allow to run experiments even for medium security levels, and thus prevent a reliable prediction of cryptographically secure key sizes.
+
+The current project studies low-memory algorithms for problems in coding and lattice theory, and how this translates to the case when these problems are deployed in one of the prevailing applications of modern cryptography, namely, key exchange protocols. 
+%We therefore concentrate on extracting a maximum amount of information of cryptographic oracles  in a streaming-based manner.
+
+
+
+
+\iffalse
+The security of cryptographic protocols is related via reductions to the security of hard problems.
+A cryptographic security proof states that any successful adversary that breaks a cryptographic protocol $\Pi$ in time $t$ can be translated into an algorithm that breaks a hard problem in time $t'$. In order to instantiate cryptographic protocols $\Pi$ efficiently, one has to first find a tight security proof that closely links $\Pi$ to a hard problem, i.e. a reduction for which $t'$ is not much larger than $t$. Second, one has to make sure that any algorithm for the hard problem runs in time larger than $t'$. 
 %This would then in turn show that there cannot be any adversary for $\pi$, since it would imply a faster algorithm for the hard problem.
 
 In the past, cryptography relied on well studied hard problems from number-theory, such as factoring integers and computing discrete logarithms in elliptic curves. However, these problems stay no longer hard in the presence of quantum computers. Therefore, the NIST (National Institute of Standards and Technology) announced in autumn 2016 a call for Post-Quantum cryptographic primitives.
@@ -129,7 +144,7 @@ Most likely, the majority of reasonable candidates will be based on hard problem
 For making such a security claim in a reliable manner, one nowadays studies medium security levels of $50-60$ bits in practical experiments, and then extrapolates via asymptotic formulas to the desired security level. However, current algorithms for LPN and LWE for security level $b$ also require to store $2^b$ samples. This huge amount of data prevents to run experiments even for medium security levels, and thus prevents a reliable prediction of cryptographically secure key sizes.
 
 The current project studies low-memory algorithms for problems in coding and lattice theory, and how this translates to the case when these problems are deployed in key exchange protocols. We therefore concentrate on extracting a maximum amount of information of cryptographic oracles  in a streaming-based manner.
-
+\fi
 
 
 %Thus, we require data structures for encrypted data. In addition, we have to make sure that there do not exist any built-in backdoors for cryptography that allow an illegitimate person, e.g. the NSA, to decrypt the information.
@@ -197,7 +212,7 @@ Securing communication data between two parties typically consists of composing 
 The focus for securing communication against advanced attacks, especially against quantum cryptanalysis, currently lies on the key exchange part. The reason is twofold. The first reason is that most of the practically deployed key exchange protocols (such as the ones used in TLS~1.2 \cite{TLS12} and the future TLS~1.3 \cite{TLS13}) rely on number-theoretic problems which are highly amenable to quantum attacks. The best known examples are the paramount Diffie-Hellman based protocols which can be broken in polynomial time by quantum attackers. 
 
 
-Concerning efforts to build quantum-resistant key exchange protocol, this area has gained quite some momentum, culminating in proposals to derive such protocols from Ring-LWE \cite{P14,BCNS15,ADPS16} and LWE \cite{BCDMNNRS16}. For the scheme in \cite{ADPS16}, the ``New Hope'' key exchange protocol, Google recently announced to experiment with the scheme in its Chrome browser \cite{Google}. Another recent proposal for a potentially quantum-resistant key echange protocol is based on ideal lattices \cite{ZZDSD15}.
+Concerning efforts to build quantum-resistant key exchange protocol, this area has gained quite some momentum, culminating in proposals to derive such protocols from Ring-LWE \cite{P14,BCNS15,ADPS16} and LWE \cite{BCDMNNRS16}. For the scheme in \cite{ADPS16}, the ``New Hope'' key exchange protocol, Google recently announced to experiment with the scheme in its Chrome browser \cite{Google}. Another recent proposal for a potentially quantum-resistant key exchange protocol is based on ideal lattices \cite{ZZDSD15}.
 
 \paragraph{Shortcomings of current LPN-/LWE-based Key Exchange Protocols.}
 
@@ -265,17 +280,20 @@ The total duration time of the project is 36 months (3 years). The project durat
 
 The overall goal of the project is to advance the field of memory-efficient evaluations for the cryptographic problems LWE and LPN, in order to provide sound security estimates even if  required data exceeds reasonable memory bounds. These problems are primary candidates in NIST's search for future, quantum-secure primitives. The research should be carried out for the problems itself, but also for the deployment of the problems in the important setting of key exchange. To this end the following sub goals should be addressed:
 \begin{description}
- \item[Analyses of existing LWE/LPN-based Protocols:]
-  The idea is to revisit the existing protocols in light of the findings about the memory requirements for LWE and LPN. The goal is to make statements about the security bounds, by verifying if  \marc{to be continued}
- \item[Combining TLS~1.3 with LWE/LPN:]
- The objective here is to make LWE- and LPN-based key exchange protocols resemble the TLS~1.3 structure more closely. We expect that this will require to introduce a ``PRF-ODH like'' assumption for these problems. The goals here are thus to (a) devise protocols, (b) give a reduction to a suitable LWE- or LPN-based problem, taking the memory requirements into account, and (c) to evaluate the security of the problem in light of the analyses of the original problems. 
- 
- \item[Memory Efficient LWE Classically and Quantumly.]
+%
+\item[Memory Efficient LWE Classically and Quantumly.]
 \item[Memory Efficient Lattice Reduction.]
 \item[Practical Cryptanalysis of NIST's Post-Quantum Candidates.]
 \alex{Vorschläge für Dich.}
 \item[Memory Efficient Reductions?] Das hätte Schnitt mit Eike. Wäre vielleicht gar nicht so schlecht.
 \item[Construction of Post-Quantum Candidate?]
+%
+ \item[Analyses of existing LWE/LPN-based Protocols:]
+  The idea is to revisit the existing protocols in light of the findings about the memory requirements for LWE and LPN. The goal is to make statements about the security bounds based on the other results. This requires to check the memory consumption of the reduction and if to verify if solvers for the underlying problems can be directly used in the context of key exchange, e.g., if one can ``stream'' executions of the key exchange protocol to the solver.
+  %
+ \item[Combining TLS~1.3 with LWE/LPN:]
+ The objective here is to make LWE- and LPN-based key exchange protocols resemble the TLS~1.3 structure more closely. We expect that this will require to introduce a ``PRF-ODH like'' assumption for these problems. The goals here are thus to (a) devise protocols, (b) give a reduction to a suitable LWE- or LPN-based problem, taking the memory requirements into account, and (c) to evaluate the security of the problem in light of the analyses of the original problems. 
+ 
 
 
 \end{description}
@@ -286,7 +304,8 @@ The overall goal of the project is to advance the field of memory-efficient eval
 
 The work program is split into parts addressed by the individual groups and by joint parts.
 Project part A describes the work programme associated to Alexander May,
-Project part B describes the work programme of Marc Fischlin. Part C is a joint part.
+Project part B describes the work programme of Marc Fischlin. 
+%Part C is a joint part.
 The duration of the individual work packages and their dependencies are described in
 Figure~\ref{fig:WPs}.
 
