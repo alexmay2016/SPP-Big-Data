@@ -1,21 +1,25 @@
 \newcounter{workpackage}
-\setcounter{workpackage}{1}
+\renewcommand{\theworkpackage}{\Alph{workpackage}}
+\setcounter{workpackage}{0}
+\refstepcounter{workpackage}\label{am:wp:eins}
 
-\paragraph{Workpackage \Alph{workpackage}.1}
+%Referenzen auf WP-Buchstaben am:wp:eins und am:wp:zwei, sowie mf:wp:eins,...
 
-
-\paragraph{Workpackage \Alph{workpackage}.2}
-
-text
-
-\stepcounter{workpackage}
+\paragraph{Work package \theworkpackage.1}
 
 
-\paragraph{Workpackage \Alph{workpackage}.1}
-
-\paragraph{Workpackage \Alph{workpackage}.2}
+\paragraph{Work package \theworkpackage.2}
 
 text
 
-\stepcounter{workpackage}
+%--
+\refstepcounter{workpackage}\label{am:wp:zwei}
+
+
+\paragraph{Work package \theworkpackage.1}
+
+\paragraph{Work package \theworkpackage.2}
+
+text
+
 

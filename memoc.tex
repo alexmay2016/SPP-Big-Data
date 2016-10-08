@@ -58,6 +58,9 @@
 \newcommand{\alex}[1]{\textcolor{red}{\texttt{Alex: }#1}}
 \newcommand{\map}{\textsf{map}}
 \newcommand{\reduce}{\textsf{reduce}}
+\newcommand{\adv}{\ensuremath{\mathcal{A}}}
+\newcommand{\reduc}{\ensuremath{\mathcal{R}}}
+
 
 \newcommand{\url}[1]{\texttt{#1}}
 
@@ -123,8 +126,9 @@ the National Institute of Standards and Technology (NIST) announced a call for q
 Most likely, the majority of reasonable candidates for the NIST competition will be based on hard problems from coding theory and lattices, such as Learning Parities with Noise (LPN) and Learning with Errors (LWE). NIST requests well-defined security levels of 128, 192 and 256 bits classically, and 64, 80, 128 bits quantumly. This means that for instantiating LPN with, say, 128 bit classical security, one has to make sure that any algorithm for LPN will need at least $2^{128}$ steps on a classical computer. 
 
 Since running times of $2^{128}$ escape current computational power,
-one nowadays typically studies medium security levels of $50-60$ bits in practical experiments, and then extrapolates via asymptotic formulas to the desired security level to make a reasonable security claim. However, besides running time the memory requirement is also factor. In fact, for the interesting problems LPN and LWE current algorithms also require to store an exponential number of samples. This huge amount of data and its storage requirement do not allow to run experiments even for medium security levels, and thus prevent a reliable prediction of cryptographically secure key sizes.
+one nowadays typically studies medium security levels of $50-60$ bits in practical experiments, and then extrapolates via asymptotic formulas to the desired security level to make a reasonable security claim. However, besides running time, the memory requirement is also major factor. In fact, for the interesting problems LPN and LWE current algorithms also require to store an exponential number of samples. This huge amount of data and its storage requirement do not allow to run experiments even for medium security levels, and thus prevent a reliable prediction of cryptographically secure key sizes.
 
+\marc{das koennte noch 1-2 Saetze laenger sein:}
 The current project studies low-memory algorithms for problems in coding and lattice theory, and how this translates to the case when these problems are deployed in one of the prevailing applications of modern cryptography, namely, key exchange protocols. 
 %We therefore concentrate on extracting a maximum amount of information of cryptographic oracles  in a streaming-based manner.
 
@@ -175,7 +179,7 @@ May 2011
 \section{State of the art and preliminary work}
 
 Big data processing in cryptography often refers to the efficiency of mounting attacks. Typically, if an adversary gets access to a sufficient amount of data and can provide enough resources, then the sought-after information becomes available. Remarkably, in most cases cryptographers focus on the time requirements of attacks in order to assess the security of solutions. Yet, the memory consumption for both storing large amounts of data and for executing attacks is an important factor, too.%
-\footnote{A concrete example where this fact has been brought back to the center of attention is the initiative of the US National Security Agency (NSA) to build the so-called Utah Data Center for mass storage of data \cite{Utah}.}
+\footnote{A concrete example where this fact has been brought back to the center of attention is the (officially confirmed) initiative of the US National Security Agency (NSA) to build the so-called Utah Data Center for mass storage of data.}
 
 
 \paragraph{The Impact of Memory Consumption.}
@@ -189,10 +193,11 @@ Hence, for estimating the security of cryptographic constructions one should als
 
 \paragraph{The Impact on LPN and LWE.}
 In this proposal we combine the question of memory consumption with a recent development in cryptography, due to the potential advances in quantum computing. Nowadays the question pops up which cryptography can still be considered to be suitable to protect data, since classical problems like RSA or discrete logarithms will become insecure once quantum computers reach maturity.
-
+%
 %This is even more urgent for the most prominent candidates for Post-Quantum Cryptography. 
 
-In November 2017, the National Institute of Standards and Technology (NIST) will open a call for candidates of cryptosystems for encryption, signature and key exchange, which are presumably immune to quantum attacks. The candidates will then undergo a period of 3-5 years of cryptanalytic research, before a recommendation is made. Most likely, a majority of these systems will be based on problems from coding and lattice theory, such as Learning Parities with Noise (LPN) and Learning with Errors (LWE). But the currently best algorithms for both problems have a memory consumption which is as large as their running time, making them useless for implementing them even on medium size security levels.
+In November 2017, the National Institute of Standards and Technology (NIST) will open a call for candidates of cryptosystems for encryption, signature and key exchange, which are presumably immune to quantum attacks. The candidates will then undergo a period of 3-5 years of cryptanalytic research, before a recommendation is made. 
+Most likely, a majority of these systems will be based on problems from coding and lattice theory, such as Learning Parities with Noise (LPN) and Learning with Errors (LWE). But the currently best algorithms for both problems have a memory consumption which is as large as their running time, making them useless for implementing them even on medium size security levels.
 
 
 \paragraph{BKW algorithm.} high memory consumption
@@ -209,17 +214,17 @@ We are especially interested in securing communication data and the question how
 
 Securing communication data between two parties typically consists of composing a so-called key exchange protocol with a secure channel protocol.  With the secure key exchange protocol the participants establish a shared cryptographic key, which should be known only to them. Then, this key is used in a secure channel protocol to send the actual data in a confidential and authentic way. 
 
-The focus for securing communication against advanced attacks, especially against quantum cryptanalysis, currently lies on the key exchange part. The reason is twofold. The first reason is that most of the practically deployed key exchange protocols (such as the ones used in TLS~1.2 \cite{TLS12} and the future TLS~1.3 \cite{TLS13}) rely on number-theoretic problems which are highly amenable to quantum attacks. The best known examples are the paramount Diffie-Hellman based protocols which can be broken in polynomial time by quantum attackers. 
+The focus for securing communication against advanced attacks, especially against quantum cryptanalysis, currently lies on the key exchange part. The  reason is that it is currently unclear if quantum attacks improve over classical attacks for the channel part. In contrast, most of the practically deployed key exchange protocols (such as the ones used in TLS~1.2 \cite{TLS12} and the future TLS~1.3 \cite{TLS13}) rely on number-theoretic problems which are highly amenable to quantum attacks. The best known examples are the paramount Diffie-Hellman based protocols which can be broken in polynomial time by quantum attackers.  
 
 
-Concerning efforts to build quantum-resistant key exchange protocol, this area has gained quite some momentum, culminating in proposals to derive such protocols from Ring-LWE \cite{P14,BCNS15,ADPS16} and LWE \cite{BCDMNNRS16}. For the scheme in \cite{ADPS16}, the ``New Hope'' key exchange protocol, Google recently announced to experiment with the scheme in its Chrome browser \cite{Google}. Another recent proposal for a potentially quantum-resistant key exchange protocol is based on ideal lattices \cite{ZZDSD15}.
+Concerning efforts to build quantum-resistant key exchange protocol, this area has gained quite some momentum, culminating in proposals to derive such protocols from (Ring-)LWE \cite{P14,BCNS15,ADPS16,BCDMNNRS16}. For the scheme in \cite{ADPS16}, the ``New Hope'' key exchange protocol, Google recently announced to experiment with the scheme in its Chrome browser \cite{Google}. Another recent proposal for a potentially quantum-resistant key exchange protocol is based on ideal lattices \cite{ZZDSD15}.
 
 \paragraph{Shortcomings of current LPN-/LWE-based Key Exchange Protocols.}
 
-Unfortunately, most of the proposals have at least one shortcoming. For example, the analysis of New Hope \cite{ADPS16} relies on the classical random oracle model, although it has been argued in \cite{BDFLSZ11} that quantum access to this idealized primitive should be preferred in such settings. Others, such as \cite{BCNS15,BCDMNNRS16} provide security in the ACCE notion of Jager et al.~\cite{JKSS12}, arguing security when the key exchange protocol is composed with an atomic channel. This at the moment excludes a modular analysis if instead a stream-based channel is used (as possible in TLS) \cite{FGMP15}. Moreover, all the analyses follow the classical choice of investigating primarily the run time and success probability of adversaries, mainly neglecting the memory consumption in the  reduction.
+Unfortunately, most of the quantum-immune key exchange candidates have at least one shortcoming. For example, the analysis of New Hope \cite{ADPS16} relies on the classical random oracle model, although it has been argued in \cite{BDFLSZ11} that quantum access to this idealized primitive should be preferred in such settings. Others, such as \cite{BCNS15,BCDMNNRS16} provide security in the ACCE notion of Jager et al.~\cite{JKSS12}, arguing security when the key exchange protocol is composed with an atomic channel. This at the moment excludes a modular analysis if instead a stream-based channel is used (as possible in TLS) \cite{FGMP15}. Moreover, all the analyses follow the classical choice of investigating primarily the run time and success probability of adversaries, mainly neglecting the memory consumption in the  reduction.
 
 
-Most of the aforementioned works  start with the unauthenticated key exchange setting, where parties and transmissions are not authenticated. They argue that this can be accomplished later by adding signatures. Here, however, it is unclear if breaking the authentication with a quantum computer afterwards could not lead to a break of current executions (since the secrets may still be in use later). Furthermore, in some cases this requires some changes to the structure, such that for example \cite{BCNS15,BCDMNNRS16} are, strictly speaking, not compatible to TLS.
+Furthermore, most of the aforementioned works  start with the unauthenticated key exchange setting, where parties and transmissions are not authenticated. They argue that this can be accomplished later by adding signatures. Here, however, it is unclear if breaking the authentication with a quantum computer afterwards could not lead to a break of current executions (since the secrets may still be in use later). Furthermore, in some cases this requires some changes to the structure, such that for example \cite{BCNS15,BCDMNNRS16} are, strictly speaking, not compatible to TLS.
 
 
 Another shortcoming of the current proposals is that it they may not be easy to integrate into the upcoming TLS~1.3 protocol. While \cite{BCNS15,ADPS16,BCDMNNRS16} argue how this can be done for TLS~1.2 and provide impressive implementation and performance details, the next TLS~1.3 version adds significantly enhanced functional properties such as zero round-trip time steps. In the Diffie-Hellman setting this often necessitates to switch to other number-theoretic problems, such as the PRF-ODH assumption \cite{JKSS12}. It is unclear what this would mean for LWE- and LPN-based protocols, and if adopting a new assumption, for the memory consumption for this related problem.
@@ -237,12 +242,15 @@ Another shortcoming of the current proposals is that it they may not be easy to 
 
 \subsection{Project-related publications}
 
+\marc{habe 4 von mir eignefuegt, dann kannst du noch 5 Stueck, glaube ich}
 %\subsubsection*{Articles published by outlets with scientific quality assurance, book publications, and works accepted for publication but not yet published}
 
 %laut DFG bei 2 Antragsstellern: 3 pro Foerderjahr, also nur 9 fuer uns.
 
+
 \begingroup
 \renewcommand{\section}[2]{}% eliminatinf reference section title / dirty hack
+
 
 \begin{thebibliography}{99}
 
@@ -252,7 +260,25 @@ Another shortcoming of the current proposals is that it they may not be easy to 
 \bibitem{Codes11} Alexander May, Alexander Meurer, Enrico Thomae
 	\textit{``Decoding Random Linear Codes in $O(2^{0.054n})$''} , In Advances in Cryptology (Asiacrypt 2011), Lecture Notes in Computer Science, Springer-Verlag, 2011.
 
-	
+\bibitem{Reda}
+Paul Baecher, Christina Brzuska, and Marc Fischlin. 
+\emph{Notions of black-box reductions,
+revisited}. In Advances in Cryptology - ASIACRYPT 2013 - 19th International
+Conference on the Theory and Application of Cryptology and Information Security, Bengaluru, India, December 1-5, 2013, Proceedings, Part I, volume 8269 of Lecture Notes in Computer Science, pages 296-315. Springer, 2013.
+
+\bibitem{TLS13a}
+Benjamin Dowling, Marc Fischlin, Felix G\"unther, and Douglas Stebila. 
+\emph{A cryptographic analysis of the TLS 1.3 handshake protocol candidates}. In Proceedings of the 22nd ACM SIGSAC Conference on Computer and Communications Security, Denver, CO, USA, October 12-6, 2015, pages 1197-1210. ACM, 2015.	
+
+\bibitem{Redb}
+Marc Fischlin. \emph{Black-box reductions and separations in cryptography}. In Progress
+in Cryptology - AFRICACRYPT 2012 - 5th International Conference on Cryptology
+in Africa, Ifrance, Morocco, July 10-12, 2012. Proceedings, volume 7374 of Lecture
+Notes in Computer Science, pages 413-422. Springer, 2012.
+
+\bibitem{TLS13b}
+Marc Fischlin, Felix G\"unther, Benedikt Schmidt, and Bogdan Warinschi. \emph{Key confirmation in key exchange: A formal treatment and implications for TLS 1.3}. In IEEE Symposium on Security and Privacy, SP 2016, San Jose, CA, USA, May 22-26,
+2016, pages 452-469. IEEE Computer Society, 2016.
 
 \end{thebibliography}
 \endgroup
@@ -292,7 +318,7 @@ The overall goal of the project is to advance the field of memory-efficient eval
   The idea is to revisit the existing protocols in light of the findings about the memory requirements for LWE and LPN. The goal is to make statements about the security bounds based on the other results. This requires to check the memory consumption of the reduction and if to verify if solvers for the underlying problems can be directly used in the context of key exchange, e.g., if one can ``stream'' executions of the key exchange protocol to the solver.
   %
  \item[Combining TLS~1.3 with LWE/LPN:]
- The objective here is to make LWE- and LPN-based key exchange protocols resemble the TLS~1.3 structure more closely. We expect that this will require to introduce a ``PRF-ODH like'' assumption for these problems. The goals here are thus to (a) devise protocols, (b) give a reduction to a suitable LWE- or LPN-based problem, taking the memory requirements into account, and (c) to evaluate the security of the problem in light of the analyses of the original problems. 
+ The objective here is to make LWE- and LPN-based key exchange protocols resemble the TLS~1.3 structure more closely. We expect that this will require to introduce a ``PRF-ODH like'' assumption for these problems. The goals here are thus to (a) devise protocols, (b) give a reduction to a suitable LWE- or LPN-based problem, taking the memory requirements into account, and (c) to evaluate the security of the problem in light of the analyses of the original problems in the other part of the project.
  
 
 
@@ -309,6 +335,7 @@ Project part B describes the work programme of Marc Fischlin.
 The duration of the individual work packages and their dependencies are described in
 Figure~\ref{fig:WPs}.
 
+\marc{hm, wir muessten da vielleicht noch die Abhaengigkeiten/Laufzeiten beschreiben. Ich wuerde sequentiell durchgehen: D1 (8 Mo), D2 (10 Mo), C1 (6 Mo), C2 (12 Mo), mit der Begruendung, dass ich in C erst auf eure ersten Analysen warten muss}
 
 
 \input{workpackages_am}
@@ -321,7 +348,7 @@ Extension of our EC submission to LWE.
 \subsubsection{Work Package A.2: Memory Efficient Lattice Reduction}
 Based on our ACNS paper. Integration of BKZ tricks. Finding memory-efficient sieving.
 
-\subsection{Work Package A.3: Practical Cryptanalysis of NIST's Post-Quantum Candidates}
+\subsubsection{Work Package A.3: Practical Cryptanalysis of NIST's Post-Quantum Candidates}
 First hits: Frodo and new hope.
 
 %+++ make sure it appears on page 2
@@ -350,7 +377,8 @@ The results of the theoretical work is planned to be published at conferences, w
 dissemination and availability of the project's results. In addition, we will use the usual electronic archives
 like IACR's \texttt{eprint} service, and the PI's home pages to make full versions available in a lasting way.
 As for experimental data, like software, we will also make these public, as part of the corresponding publication,
-and through electronic archives like e.g. GitHub.
+and through electronic archives like GitHub.
+\marc{lizenz? Open Source?}
 
 
 \subsection{Other information}
@@ -383,10 +411,10 @@ Not applicable.
 %\marginparwidth 1pt
 
 %\def\shortbib{0}
-\bibliographystyle{plain}
+\bibliographystyle{alpha}
 \bibliography{lit,local_bib}
 
-<<<<<<< HEAD
+
 \iffalse
 \bibitem[ABMRS13]{dedup2}
 Martin Abadi, Dan Boneh, Ilya Mironov, Ananth Raghunathan and Gil Segev:
@@ -585,8 +613,8 @@ We apply for the following funding for staff, following the DFG's personal rates
 Due to competitive nature of positions in Computer Science and in the area of IT security, we request
 funding for full doctoral student positions (100\%). We apply for funding of two doctoral
 students for the entire duration of the project. One student will be associated to TU Darmstadt (TUD)
-and work on packages B.1, B.2, and C.1, the other student will be associated to Ruhr-University Bochum (RUB)
-and work on packages A.1, A.2, and C.1. Student Assistents (one for each project partner) have been calculated with 10h/months
+and work on packages \ref{mf:wp:eins} and \ref{mf:wp:zwei}, the other student will be associated to Ruhr-University Bochum (RUB)
+and work on packages \ref{am:wp:eins} and \ref{am:wp:zwei}. Student Assistents (one for each project partner) have been calculated with 10h/months
 for the full duration of the project, with average costs of 11 EUR/h. They should support the implementations
 in the corresponding work packages.
 
@@ -618,6 +646,7 @@ in the corresponding work packages.
 
 
 \paragraph{Equipment up to EUR 10,000, Software and Consumables.}
+\marc{hier brauchen wir diesmal nix, oder?}
 We request an overall funding of 3,000 EUR for each applicant over the entire project duration, 6,000 EUR in total,
 to carry out experiments in Amazon's commercial Elastic MapReduce. Using Amazon's platform instead of local
 computing centers of both universities allows for an easier benchmarking and a smoother collaboration.
@@ -726,16 +755,16 @@ Not applicable.
 %List only those individuals who will work on the project but will not be paid out of the project funds. State each person’s name, academic title, employment status, and type of funding.
 \textbf{TU Darmstadt:}
 \begin{itemize}
-\item Prof. Dr. Marc Fischlin, Chair for Cryptography and Complexity Theory %(funded through Heisenberg-Program FI 940/3-1 of DFG) 
+\item Prof. Dr. Marc Fischlin, Chair for Cryptography and Complexity Theory. Funded through TU Darmstadt. %(funded through Heisenberg-Program FI 940/3-1 of DFG) 
 %\item Dr. Pooya Farshim (funded through Heisenberg grant FI 940-1/1)
 %\item Dipl.-Inform. Paul Baecher (funded through Heisenberg grant FI 940-1/1)
-\item M.Sc.(Math) Jacqueline Brendel (funded through DFG Doctoral College 2050 Privacy and Trust for Mobile Users)
-\item M.Sc.(Math) Victoria Fehr (funded through TU Darmstadt)
-\item M.Sc.(Math) Tommaso Gagliardoni (funded through BMBF/Hesse Security Competence Center CRISP) 
-\item M.Sc.(CS), M.Sc.(CS) Felix G\"unther (funded through DFG Collaborative Research Center 1119 CROSSING)
-\item M.Sc.(Math) Christian Janson (funded through TU Darmstadt) 
-\item M.Sc.(Math) Giorgia Azzurra Marson  (funded through DFG Collaborative Research Center 1119 CROSSING)
-\item M.Sc.(CS) Sogol Mazahero (funded through TU Darmstadt)
+\item M.Sc.(Math) Jacqueline Brendel. Funded through DFG Doctoral College 2050 Privacy and Trust for Mobile Users.
+\item M.Sc.(Math) Victoria Fehr. Funded through TU Darmstadt; expected to leave till project start.
+\item M.Sc.(Math) Tommaso Gagliardoni. Funded through BMBF/Hesse Security Competence Center CRISP; expected to leave till project start.
+\item M.Sc.(CS), M.Sc.(CS) Felix G\"unther. Funded through DFG Collaborative Research Center 1119 CROSSING.
+\item M.Sc.(Math) Christian Janson. Funded through TU Darmstadt. 
+\item M.Sc.(Math) Giorgia Azzurra Marson. Funded through DFG Collaborative Research Center 1119 CROSSING; expected to leave till project start.
+\item M.Sc.(CS) Sogol Mazaheri. Funded through TU Darmstadt.
 %\item M.Sc.(CS) Arno Mittelbach (funded through State Hesse, LOEWE center CASED) 
 \end{itemize}
 Support: 1 secretary.
@@ -762,13 +791,23 @@ Support: 1 secretary and 1 technical assistant.
 
 %We plan to continue our cooperations with the following colleagues:
 
+\marc{ziemlich dumm eigentlich, dass nach uns aufzuteilen; macht keinen kollaborativen Eindruck...}
+
+
+We plan to cooperate with Prof.~Eike Kiltz (RUB, Germany) on the question of memory-efficient reductions. Prof.~Kiltz and Prof.~Hofheinz have participated in the first phase of the Priority Program 1736 (Algorithms for Big Data) jointly on a project about tight security reductions and plan to continue their collaboration in the next phase.
+\marc{warte noch auf Antwort von Eike}
+
+\marc{Meyer}
+
+
+\iffalse
 \noindent
 \textbf{Marc Fischlin:}
 %
 \begin{itemize}
-\item Prof.~Kenny Paterson (RHUL, UK)
-\item Prof.~Douglas Stebila (McMaster University, Canada)
-\item Prof.~Bogdan Warinschi (U Bristol, UK)
+\item Prof.~Eike Kiltz (RUB, Germany)
+%\item Prof.~Douglas Stebila (McMaster University, Canada)
+%\item Prof.~Bogdan Warinschi (U Bristol, UK)
 \end{itemize}
 
 \noindent
@@ -781,7 +820,7 @@ Support: 1 secretary and 1 technical assistant.
 \item Prof. Dr. Hans Simon (Ruhr-University Bochum)
 \end{itemize}
 %
-
+\fi
 
 \subsubsection*{Researchers with whom you have collaborated scientifically within the past three years}
 

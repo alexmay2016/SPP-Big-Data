@@ -1,35 +1,35 @@
+\refstepcounter{workpackage}\label{mf:wp:eins}
+
+\paragraph{Work package \theworkpackage.1: Memory-efficient Reductions}
+
+The first task is to explore the memory efficiency of the reductions in \cite{P14,BCNS15,ADPS16,BCDMNNRS16}. Such a reduction $\reduc$ from the key exchange protocol takes an adversary $\adv_\text{KE}$ against the protocol, and turns this into an algorithm $\adv_\text{LWE}=\reduc^{\adv_\text{KE}}$ against the underlying algorithmic problem; in the example here for LWE.
+Since one usually considers key exchange protocols in the multi-instance setting of Bellare and Rogaway \cite{BR93}, the reduction usually needs to simulate the multiple instances of the key exchange protocol, at the expense of a significant storage requirement, e.g., if $2^{20}$ instances are running concurrently. This has major impact on the assumed hardness of the underlying problem.
+
+We are therefore interested in the exact effect of the reduction's requirements on the suggested parameter choice. This requires us to determine the exact bounds (in particular, in terms of space) and link them to the findings of Work package \marc{XXXX; link auf ein vorheriges WP}. 
+We also investigate if we can devise better reductions or bounds, e.g., in the sequential execution model.
 
 
-\paragraph{Workpackage \Alph{workpackage}.1: Memory-efficient Reductions}
+\paragraph{Work package \theworkpackage.2: Analysis of Underlying LWE-Problems.}
 
-\marc{to be done}
+In this work package we investigate the hardness of the underlying problem(s) proposed in Work packages {\ref{mf:wp:zwei}}.1 and \ref{mf:wp:zwei}.2. This investigation covers several aspects. First, we verify with the results of Work packages \marc{XXXX; link auf ein vorheriges WP} how hard the problem itself seems to be. Secondly, we try to relate the new problem (via memory-efficient reductions) to the standard LWE problem, or try to show that the problem is strictly stronger, by giving a black-box separation result.
 
-\paragraph{Workpackage \Alph{workpackage}.2}
+%--
+\refstepcounter{workpackage}\label{mf:wp:zwei}
 
-\marc{to be done}
-
-\stepcounter{workpackage}
-
-
-\paragraph{Work package \Alph{workpackage}.1: Adaptation to TLS~1.2.}
+\paragraph{Work package \theworkpackage.1: Adaptation to TLS~1.2.}
 
 In this work packages we adopt ideas from the TLS~1.2 concept \cite{TLS12} to the suggested LWE-based key exchange protocol designs. The main step is to investigate if one can remove the late signatures in \cite{BCNS15} which make the solution slightly TLS-non-conforming. As discussed in \cite{BCNS15} such a change would most likely imply to switch to a PRF-ODH like assumption, allowing the adversary to mount an active attack against the underlying LWE problem. As pointed out by Peikert \cite{P14}, the problem seems to be easy under such active attacks, though. 
 
 Fortunately, not all is lost: For TLS~1.2 the analysis of Jager et al.~\cite{JKSS12} requires only a very limited form of active attacks in which the adversary can make a single chosen queries only. For such active attacks the LWE problem may still be hard. As an alternative, or second step, we consider other designs possibilities for the key exchange protocol, thwarting this problem by design.
 
+If possible, solutions should be implemented and compared to existing ones.
 
-\paragraph{Work package \Alph{workpackage}.2: Adaptation to TLS~1.3.}
+\paragraph{Work package \theworkpackage.2: Adaptation to TLS~1.3.}
 
 This work packages looks into the possibility to adapt the ideas of previous LWE-based proposals to (the current draft of) TLS~1.3~\cite{TLS13}. Since TLS~1.3 will be fundamentally different from TLS~1.2 this at foremost requires us to check if the current solutions can be transferred at all. 
 
 Next, we address the question if we can augment existing protocols by a 0RTT mode where one derives a fresh key without interaction by consulting previous communication data. As explained above, this presumably requires an even stronger PRF-ODH like assumption, where the adversary can make many active queries. Here the question which should be addressed is if one needs to make some restriction on the number of key exchange sessions in which material is re-used.
 
+If possible, solutions should be implemented and compared to existing ones.
 
-
-\paragraph{Work package \Alph{workpackage}.2: Analysis of Underlying Problems.}
-
-In this work package we investigate the hardness of the underlying problem(s) proposed in Work packages \Alph{workpackage}.1 and \Alph{workpackage}.2. This investigation covers several aspects. First, we verify with the results of Work packages \marc{XXXX; link auf ein vorheriges WP} how hard the problem itself seems to be. Secondly, we try to relate the new problem (via memory-efficient reductions) to the standard LWE problem, or try to show that the problem is strictly stronger, by giving a black-box separation result.
-
-
-\stepcounter{workpackage}
 
