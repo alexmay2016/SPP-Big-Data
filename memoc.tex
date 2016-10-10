@@ -60,7 +60,7 @@
 \newcommand{\reduce}{\textsf{reduce}}
 \newcommand{\adv}{\ensuremath{\mathcal{A}}}
 \newcommand{\reduc}{\ensuremath{\mathcal{R}}}
-
+\newcommand{\memoc}{\text{MemoC}}
 
 \newcommand{\url}[1]{\texttt{#1}}
 
@@ -70,7 +70,7 @@
 {\large
 Project Proposals\\
 within SPP 1736 -- Algorithms for Big Data\\[2ex]
-\textbf{Memory-Efficient Use of Big Data in Cryptography (MemoC)}\\
+\textbf{Memory-Efficiency for Big Data Cryptography (MemoC)}\\
 }
 
 \noindent
@@ -178,6 +178,10 @@ May 2011
 \newpage
 \section{State of the art and preliminary work}
 
+Following the guidelines for applications we report on the state of the art as well as the PI's preliminary work. Although, technical speaking, this is \emph{not} a renewal proposal, the proposal here should continue our participation within the priority program SPP 1736 -- Algorithms for Big Data. We therefore report about the achievements of our project SecOBig in the first phase of the program and the reason for discontinuing SecOBig in Section~\ref{sec:secobig}. 
+
+\subsection{State of the art}
+
 Big data processing in cryptography often refers to the efficiency of mounting attacks. Typically, if an adversary gets access to a sufficient amount of data and can provide enough resources, then the sought-after information becomes available. Remarkably, in most cases cryptographers focus on the time requirements of attacks in order to assess the security of solutions. Yet, the memory consumption for both storing large amounts of data and for executing attacks is an important factor, too.%
 \footnote{A concrete example where this fact has been brought back to the center of attention is the (officially confirmed) initiative of the US National Security Agency (NSA) to build the so-called Utah Data Center for mass storage of data.}
 
@@ -232,12 +236,13 @@ Another shortcoming of the current proposals is that it they may not be easy to 
 
 
 
-\subsubsection*{Preliminary Work of the PIs}
+\subsection{Preliminary Work of the PIs}
 
 \input{preliminary_am}
 \input{preliminary_mf}
 
 
+\input{first_project}
 
 
 \subsection{Project-related publications}

@@ -1,0 +1,60 @@
+\subsection{Preliminary Work in the first Project SecOBig}\label{sec:secobig}
+
+In the first phase of the priority program both applicants have conducted a project called \emph{Security-Preserving Operations on Big Data} (\emph{SecOBig}).  The focus of this proposal here has changed now. In the following we report briefly on the achievements of \emph{SecOBig} (so far, with the projects still running for about 8 months) and the reason for the shift of topic and a fresh application (instead of a renewal application).
+
+\paragraph{Achievements in SecOBig.}
+SecOBig promised to work on efficient operations on secured data, both targeted as well as through the deployment of functional encryption and indistinguishable obfuscation, and certification of cryptographic primitives. At TU Darmstadt, Arno Mittelbach has been working on the project but has meanwhile left academia. \marc{RUB}
+%
+The following works have been published in the context of the project so far: \marc{RUB Sachen addieren}
+
+\noindent
+Peer-reviewed Publications:
+\begin{itemize}
+ \item   Marc Fischlin, Amir Herzberg, Hod Bin Noon, Haya Shulman:
+Obfuscation Combiners. Crypto 2016. This work deals with the certification and obfuscation questions, as it shows how to build robust solutions in light of malicious obfuscators, and reports about implementation results.
+%
+\item 
+Victoria Fehr, Marc Fischlin:
+Sanitizable Signcryption: Sanitization over Encrypted Data. In submission, see also IACR cryptographic eprint archive 2015. Provides solutions to allow for controlled modifications of authenticated, encrypted data.
+%
+\item Rolf Egert, Marc Fischlin, David Gens, Sven Jacob, Matthias Senker, J\"orn Tillmanns: Privately Computing Set-Union and Set-Intersection Cardinality via Bloom Filters. ACISP 2015. This work deals with efficient operations on encrypted data for computing the number of shared elements in large sets. Topic has been inspired by the invited talk of Michael Goodrich about Bloom filters at the opening of the priority program.
+%
+\item Christina Brzuska, Pooya Farshim, Arno Mittelbach:
+Random-Oracle Uninstantiability from Indistinguishability Obfuscation. TCC 2015. Relates to the question of obfuscation, and shows that the random oracle methodology for designing practical solutions may not be applicable in general.
+%
+\item Christina Brzuska, Arno Mittelbach:
+Indistinguishability Obfuscation versus Multi-bit Point Obfuscation with Auxiliary Input. Asiacrypt 2014. Relates to the question of obfuscation and technical details about the realizability.
+%
+\item 
+Christina Brzuska, Pooya Farshim, Arno Mittelbach:
+Indistinguishability Obfuscation and UCEs: The Case of Computationally Unpredictable Sources, Crypto 2014. Relates to the question of obfuscation and shows that obfuscation can actually be used to show negative result.
+%
+\end{itemize}
+%
+
+\noindent
+Theses:
+\begin{itemize}
+\item Sven Jacob. Realizing Cryptographic Protocols in the MapReduce-Framework. Ongoing Master Thesis, TU Darmstadt, 2016. Provides cryptographically secure protocols in the MapReduce framework, including implementations in Hadoop and Amazon's Elastic MapReduce (EMR) framework.
+%
+\item Arno Mittelbach. Random Oracles in the Standard Model --- A Systematic Study of Random Oracle (Un)Instantiability via Universal Computational Extractors and Obfuscation. Ph.D.~Thesis, TU Darmstadt, December 2015.
+%
+\item Kai Schwierczek. Approximation of the Maximum in Big Data, Master-Thesis TU Darmstadt, 2015. Touches the question how to compute the easy statistics (like the maximum or minimum) on encrypted outsourced data efficiently, by sacrificing precision.
+%
+\item Tobias Weber. Combiners for Robust Pseudorandom Number Generators, Master-Thesis TU Darmstadt, 2015. Deals with certification in the sense that one builds robust pseudorandom generators in the presence of some malicious generators.
+%
+\end{itemize}
+
+\noindent
+Others:
+\begin{itemize}
+\item Dagstuhl seminar about Public-Key Cryptography, organized by Fischlin, May, Rabin, and Pointcheval, September 2016. Big Data has been one of the topics in the seminar.
+\end{itemize}
+
+
+\paragraph{Shift of Topic.}
+The main focus of the project \emph{SecOBig} was to perform operations on large amounts of cryptographically secured data. In the second phase, with project \emph{\memoc} we turn the focus to the research question what Big Data scenarios actually mean for cryptographic strengths. The reason for this transition this is twofold. First, it should allow a smoother collaboration within the priority program. Here, we especially refer to the projects \emph{Scalable Cryptography} of Hofheinz and Kiltz and \emph{Big-Data-DynAmO: Dynamic, Approximate, and Online Methods for Big Data} of Meyer. The former one touches related questions concerning tightness in cryptographic security proofs, and the latter one deals (among others) with memory resources. To best of our knowledge, both projects will be continued in the second phase of the priority program.
+
+The other reason is based on the recent developments in the cryptographic community. One is that, in the past years, the has been a growing trend to perform general secure operation via so-called garbled circuits. This approach shows impressive performances, but neither one of the applicants here is an expert on this. Also, with NIST's recent call for post-quantum secure primitives and the growing interest by companies like Google, looking into this area in the context of Big data processing seems to be a more fashionable topic.
+
+
