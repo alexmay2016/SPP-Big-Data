@@ -1,13 +1,14 @@
 \refstepcounter{workpackage}\label{mf:wp:eins}
 
-\paragraph{Work package \theworkpackage.1: Memory-efficient Reductions}
+\paragraph{Work package \theworkpackage.1: Memory-efficiency of Existing Reductions.}
 
-The first task is to explore the memory efficiency of the reductions in \cite{P14,BCNS15,ADPS16,BCDMNNRS16}. Such a reduction $\reduc$ from the key exchange protocol takes an adversary $\adv_\text{KE}$ against the protocol, and turns this into an algorithm $\adv_\text{LWE}=\reduc^{\adv_\text{KE}}$ against the underlying algorithmic problem; in the example here for LWE.
+The first task is to explore the memory efficiency of the concrete reductions in \cite{P14,BCNS15,ADPS16,BCDMNNRS16}. Such a reduction $\reduc$ from the key exchange protocol takes an adversary $\adv_\text{KE}$ against the protocol, and turns this into an algorithm $\adv_\text{LWE}=\reduc^{\adv_\text{KE}}$ against the underlying algorithmic problem; in the example here for LWE.
 Since one usually considers key exchange protocols in the multi-instance setting of Bellare and Rogaway \cite{BR93}, the reduction usually needs to simulate the multiple instances of the key exchange protocol, at the expense of a significant storage requirement, e.g., if $2^{20}$ instances are running concurrently. This has major impact on the assumed hardness of the underlying problem.
 
 We are therefore interested in the exact effect of the reduction's requirements on the suggested parameter choice. This requires us to determine the exact bounds (in particular, in terms of space) and link them to the findings of Work package \marc{XXXX; link auf ein vorheriges WP}. 
 We also investigate if we can devise better reductions or bounds, e.g., in the sequential execution model.
 
+\marc{Eike war sehr ungluecklich ueber diesen Teil, da er ihm wohl zu nah an derem Proposal ist. Ich weiss nicht mehr genau, wie das war, hatte aber in Erinnerung das wir dadrueber schon in Dagstuhl gesprochen haben, bevor ich das von Eike davon wusste. Habe versucht, das jetzt mal naeher an die konkreten Protokolle ranzuschieben, aber ich glaube, wir brauchen auch einen Link zu deinem Teil.}
 
 \paragraph{Work package \theworkpackage.2: Analysis of Underlying LWE-Problems.}
 
