@@ -68,7 +68,7 @@
 
 \noindent
 {\large
-Project Proposals\\
+Project Proposal\\
 within SPP 1736 -- Algorithms for Big Data\\[2ex]
 \textbf{Memory-Efficiency for Big Data Cryptography (MemoC)}\\
 }
@@ -84,10 +84,12 @@ Alexander May, Ruhr Universit\"at Bochum\\
 \subsection{Applicants}
 \fi
 
+\iffalse
 \textbf{BEMERKUNGEN:\\
 *Ich habe den Twist jetzt gelegt auf: Wir schauen uns LPN+Co an bzgl Speicher, aber auch was das in der Anwendung (Key Exchange) bedeutet\\[1ex]
 *Es ware nicht schlecht, wenn wir noch ein paar Links setzen wuerden (Meyer $\to$  Memory, Eike $\to$ Reduktionen, letzteres waere fur die vermutlich auch nicht schlecht, siehe letztes Mal)\\[1ex]
 }
+\fi
 
 \iffalse
 \marc{Ich glaube, das alles da unten bis Summary kommt  jetzt extra}
@@ -116,19 +118,15 @@ We apply for a period of 36 months funding, starting in June 2014.
 \section*{Summary}
 %\subsection{Summary}
 
-\alex{Muss eventuell gekürzt werden.}
-
-\marc{der einstieg kam mir etwas zu lang vor; Theoretiker wissen, dass man nach Speicher und Zeit unterscheiden kann, denen muss man nur sagen, dass Krypto bisher immer Zeit macht}
-
 The security of cryptographic protocols is related via reductions to the security of presumably hard problems. Such a reduction transforms any successful adversary against a protocol into one against the underlying problem such that, vice versa, the hardness of the problem implies the hardness of the protocol. In the past, cryptographers used classical number-theoretic problems like the RSA problem or the discrete logarithm problem. But these problems will become insecure once quantum computers become real. It is therefore no surprise that
 the National Institute of Standards and Technology (NIST) announced a call for quantum-resistant cryptographic primitives in autumn 2016.
 
-Most likely, the majority of reasonable candidates for the NIST competition will be based on hard problems from coding theory and lattices, such as Learning Parities with Noise (LPN) and Learning with Errors (LWE). NIST requests well-defined security levels of 128, 192 and 256 bits classically, and 64, 80, 128 bits quantumly. This means that for instantiating LPN with, say, 128 bit classical security, one has to make sure that any algorithm for LPN will need at least $2^{128}$ steps on a classical computer. 
+Most likely, the majority of reasonable candidates for the NIST competition will be based on hard problems from coding theory and lattices, such as Learning Parity with Noise (LPN) and Learning with Errors (LWE). NIST requests well-defined security levels of 128, 192 and 256 bits classically, and 64, 80, 128 bits quantumly. This means that for instantiating LPN with, say, 128 bit classical security, one has to make sure that any algorithm for LPN will need at least $2^{128}$ steps on a classical computer. 
 
 Since running times of $2^{128}$ escape current computational power,
 one nowadays typically studies medium security levels of $50-60$ bits in practical experiments, and then extrapolates via asymptotic formulas to the desired security level to make a reasonable security claim. However, besides running time, the memory requirement is also major factor. In fact, for the interesting problems LPN and LWE current algorithms also require to store an exponential number of samples. This huge amount of data and its storage requirement do not allow to run experiments even for medium security levels, and thus prevent a reliable prediction of cryptographically secure key sizes.
 
-\marc{das koennte noch 1-2 Saetze laenger sein:}
+%\marc{das koennte noch 1-2 Saetze laenger sein:}
 The current project studies low-memory algorithms for problems in coding and lattice theory, and how this translates to the case when these problems are deployed in one of the prevailing applications of modern cryptography, namely, key exchange protocols. 
 %We therefore concentrate on extracting a maximum amount of information of cryptographic oracles  in a streaming-based manner.
 
@@ -143,7 +141,7 @@ A cryptographic security proof states that any successful adversary that breaks 
 In the past, cryptography relied on well studied hard problems from number-theory, such as factoring integers and computing discrete logarithms in elliptic curves. However, these problems stay no longer hard in the presence of quantum computers. Therefore, the NIST (National Institute of Standards and Technology) announced in autumn 2016 a call for Post-Quantum cryptographic primitives.
 %, i.e. encryption, signature and key exchange. Candidates have to be submitted by Nov 2017 and then undergo a period of 3-5 of cryptanalytic research.
 
-Most likely, the majority of reasonable candidates will be based on hard problems from coding theory and lattices, such as Learning Parities with Noise (LPN) and Learning with Errors (LWE). NIST requests well-defined security levels of 128, 192 and 256 bits classically, and 64, 80, 128 bits quantumly. This means that for instantiating LPN with e.g. 128 bit classical security, one has to make sure that any algorithm for LPN will need at least $2^{128}$ steps on a classical computer.
+Most likely, the majority of reasonable candidates will be based on hard problems from coding theory and lattices, such as Learning Parity with Noise (LPN) and Learning with Errors (LWE). NIST requests well-defined security levels of 128, 192 and 256 bits classically, and 64, 80, 128 bits quantumly. This means that for instantiating LPN with e.g. 128 bit classical security, one has to make sure that any algorithm for LPN will need at least $2^{128}$ steps on a classical computer.
 
 For making such a security claim in a reliable manner, one nowadays studies medium security levels of $50-60$ bits in practical experiments, and then extrapolates via asymptotic formulas to the desired security level. However, current algorithms for LPN and LWE for security level $b$ also require to store $2^b$ samples. This huge amount of data prevents to run experiments even for medium security levels, and thus prevents a reliable prediction of cryptographically secure key sizes.
 
@@ -162,7 +160,13 @@ The current project studies low-memory algorithms for problems in coding and lat
 \newpage
 \section*{Zusammenfassung}
 
-\alex{to be done}
+Die Sicherheit kryptographischer Protokolle wird mittels Reduktionen auf die Sicherheit vermeintlich schwerer Probleme zurückgeführt. Solche Reduktionen transformieren einen erfolgreichen Angreifer auf ein Protokoll in einen Algorithmus für das zugrundeliegende Problem. Damit impliziert im Umkehrschluss die Schwere des Problems die Sicherheit des Protokolls. In der Vergangenheit nutzten Kryptographen klassische zahlentheoreti\-sche Probleme wie das RSA-Problem oder das Diskrete Logarithmus Problem. Diese Probleme sind allerdings leicht auf Quantenrechnern zu lösen. Aufgrund der fortschreitenden Entwicklung von Quantenrechnern hat das National Institute of Standards and Technology (NIST) folgerichtig im Herbst 2016 einen Aufruf zur Einreichung quanten-resistenter kryptographischer Primitiven gestartet.
+
+Sehr wahrscheinlich wird die Mehrzahl der praktikablen Kandidaten in diesem NIST-Wettbewerb auf der Schwere von Problemen der Kodierungs- und Gittertheorie basieren, wie z.B. Learning Parity with Noise (LPN) und Learning with Errors (LWE). NIST fordert wohldefinierte Sicherheitslevel von 128, 192 und 256 Bit auf klassischen Rechnern und 64, 80, 128 Bit auf Quantenrechnern. D.h. für eine Instantiierung von LPN mit z.B. 128 Bit klassischer Sicherheit muss sichergestellt werden, dass jeder LPN-Algorithmus mindestens $2^{128}$ Schritte auf einem klassischen Rechner benötigt.
+ 
+Da $2^{128}$ Schritte weit jenseits derzeitiger Berechnungsmöglichkeiten liegen, studiert man heutzutage typischerweise mittlere Sicherheitslevel von $50-60$ Bit in praktischen Experimenten und extrapoliert mittels asymptotischer Formeln zum gewünschten Sicherheitslevel, um vernünftige Sicherheitsaussagen zu treffen. Allerdings spielt neben der Laufzeit der Speicherbedarf bei solchen Aussagen eine herausragende Rolle. Für die interessanten Probleme LPN und LWE benötigen die heutzutage besten Algorithmen die Speicherung exponentiell vieler Samples. Diese riesigen Datenmengen und der damit verbundene Speicherbedarf machen derzeit eine Durchführung von Experimenten selbst für mittlere Sicherheitslevel unmöglich und verhindern somit eine verlässliche Vorhersage von kryptographischen Schlüssellängen.
+
+Das folgende Projekt beschäftigt sich mit Algorithmen mit geringem Speicherbedarf für Probleme der Kodierungs- und Gittertheorie und betrachtet den Einsatz dieser quanten-resistenten Probleme in einer der fundamentalsten Anwendungen moderner Kryptographie, dem Schlüsselaustausch-Protokoll.
 
 
 
@@ -191,7 +195,7 @@ For analyzing and instantiating cryptographic systems one usually  focuses on th
 
 In cryptography, however, the space requirement for an attack can be a significant factor.
 %While it is in general a good idea to define cryptographic security in a conservative manner, this does not properly reflect practice. 
-While performing $2^{60}$ operations today is considered to be feasible, even on a medium-sized computing cluster in a reasonable amount of time, any algorithm with RAM consumption $2^{60}$ bits will not be implementable in the near future. An Internet investigation shows that nowadays the largest supercomputers\footnote{e.g. the IBM 20-Petaflops cluster installed in Sequoia, Lawrence Livermore National Laboratory, California \cite{computer}} have a RAM of at most 1.6 PB $<2^{54}$ bits. If an algorithm has to use external memory, then its running time slows down significantly.
+While performing $2^{60}$ operations today is considered to be feasible, even on a medium-sized computing cluster in a reasonable amount of time, any algorithm with RAM consumption $2^{60}$ bits will not be implementable in the near future. An Internet investigation shows that nowadays the largest supercomputers\footnote{e.g. the IBM 20-Petaflops cluster installed in Sequoia, Lawrence Livermore National Laboratory, California} have a RAM of at most 1.6 PB $<2^{54}$ bits. If an algorithm has to use external memory, then its running time slows down significantly.
 
 Hence, for estimating the security of cryptographic constructions one should also consider an upper bound on the memory consumption. This in turn defines a need for finding efficient algorithms with small memory consumption. 
 
@@ -201,14 +205,12 @@ In this proposal we combine the question of memory consumption with a recent dev
 %This is even more urgent for the most prominent candidates for Post-Quantum Cryptography. 
 
 In November 2017, the National Institute of Standards and Technology (NIST) will open a call for candidates of cryptosystems for encryption, signature and key exchange, which are presumably immune to quantum attacks. The candidates will then undergo a period of 3-5 years of cryptanalytic research, before a recommendation is made. 
-Most likely, a majority of these systems will be based on problems from coding and lattice theory, such as Learning Parities with Noise (LPN) and Learning with Errors (LWE). But the currently best algorithms for both problems have a memory consumption which is as large as their running time, making them useless for implementing them even on medium size security levels.
+Most likely, a majority of these systems will be based on problems from coding and lattice theory, such as Learning Parity with Noise (LPN) and Learning with Errors (LWE). But the currently best algorithms for both problems have a memory consumption which is as large as their running time, making them useless for implemention even on medium size security levels.
 
 
-\paragraph{BKW algorithm.} high memory consumption
+\paragraph{LPN and the BKW algorithm.} In LPN~\cite{DBLP:conf/focs/Alekhnovich03}, one has to find a secret $\mb s \in \F_2^n$ given access to an oracle that output samples of the form $(\mb a_i, b_i)$, where $\mb a_i \in_R \F_2^n$ and $b_i = \langle \mb a_i, \mb s \rangle + e_i$ for some Bernoulli error $e_i$. The algorithm of Blum, Kalai and Wasserman (BKW)~\cite{} achieves the best currently known running time $t=2^{\bigO(\frac{n}{\log n})}$ for LPN-samples of dimension $n$, but suffers from requiring also $t$ samples and storing these $t$ samples in memory. Due to its large sample complexity, there is no chance to speed up BKW quantumly, since LPN-samples are inherently classical.
 
-\paragraph{Lattice Sieving and LWE.} high memory consumption
-
-
+\paragraph{LWE and Lattice Sieving.} LWE~\cite{Regev05} is the extension of LPN to arbitrary fields $\F_q$. Namely, one has to find a secret $\mb s \in \F_q^n$ given access to an oracle that output samples of the form $(\mb a_i, b_i)$, where $\mb a_i \in_R \F_q^n$ and $b_i = \langle \mb a_i, \mb s \rangle + e_i$ for some discrete error $e_i$ whose distribution is centered around $0$ (e.g. a discrete Gaussian). Depending on the LWE-parameters, the best algorithm for LWE is either a generalization of BKW to $\F_q$~\cite{AlbrechtCFFP15} or lattice sieving methods~\cite{DBLP:conf/stoc/AggarwalDRS15}. Both achieve for cryptographic parameter settings a running time of $2^{\bigO(n)}$, using the same amount of memory. Moreover, for both algorithms no significant speed-up via quantum search methods is known. 
 
 \paragraph{Deployment of LPN and LWE in Key Exchange Protocols.}
 Analogously to the problem of determining the necessary resources for mounting attacks, in order to make recommendations for secure choices for the underlying problems, we are interested in the security when these problems are deployed in more complex protocols.
@@ -247,7 +249,7 @@ Another shortcoming of the current proposals is that it they may not be easy to 
 
 \subsection{Project-related publications}
 
-\marc{habe 4 von mir eignefuegt, dann kannst du noch 5 Stueck, glaube ich}
+%\marc{habe 4 von mir eignefuegt, dann kannst du noch 5 Stueck, glaube ich}
 %\subsubsection*{Articles published by outlets with scientific quality assurance, book publications, and works accepted for publication but not yet published}
 
 %laut DFG bei 2 Antragsstellern: 3 pro Foerderjahr, also nur 9 fuer uns.
@@ -259,32 +261,45 @@ Another shortcoming of the current proposals is that it they may not be easy to 
 
 \begin{thebibliography}{99}
 
-\bibitem{Codes12} Anja Becker, Antoine Joux, Alexander May, Alexander Meurer, 
-	\textit{``Decoding Random Binary Linear Codes in $2^{n/20}$: How 1+1=0 Improves Information Set Decoding''} , In Advances in Cryptology (Eurocrypt 2012), Lecture Notes in Computer Science, Springer-Verlag, 2012.
-%
-\bibitem{Codes11} Alexander May, Alexander Meurer, Enrico Thomae
-	\textit{``Decoding Random Linear Codes in $O(2^{0.054n})$''} , In Advances in Cryptology (Asiacrypt 2011), Lecture Notes in Computer Science, Springer-Verlag, 2011.
-
 \bibitem{Reda}
 Paul Baecher, Christina Brzuska, and Marc Fischlin. 
 \emph{Notions of black-box reductions,
 revisited}. In Advances in Cryptology - ASIACRYPT 2013 - 19th International
 Conference on the Theory and Application of Cryptology and Information Security, Bengaluru, India, December 1-5, 2013, Proceedings, Part I, volume 8269 of Lecture Notes in Computer Science, pages 296-315. Springer, 2013.
-
+%
+%\bibitem{Codes12} Anja Becker, Antoine Joux, Alexander May, Alexander Meurer.
+%	\textit{Decoding Random Binary Linear Codes in $2^{n/20}$: How 1+1=0 Improves Information Set Decoding} , In %Advances in Cryptology (Eurocrypt 2012), Lecture Notes in Computer Science, Springer-Verlag, 2012.
+%
 \bibitem{TLS13a}
 Benjamin Dowling, Marc Fischlin, Felix G\"unther, and Douglas Stebila. 
 \emph{A cryptographic analysis of the TLS 1.3 handshake protocol candidates}. In Proceedings of the 22nd ACM SIGSAC Conference on Computer and Communications Security, Denver, CO, USA, October 12-6, 2015, pages 1197-1210. ACM, 2015.	
-
+%
+\bibitem{LPN} Andre Esser, Robert Kübler, Alexander May.
+\textit{LPN Decoded}, 2016, {\bf in submission}, attached to this proposal as complementary material.
+%
 \bibitem{Redb}
 Marc Fischlin. \emph{Black-box reductions and separations in cryptography}. In Progress
 in Cryptology - AFRICACRYPT 2012 - 5th International Conference on Cryptology
 in Africa, Ifrance, Morocco, July 10-12, 2012. Proceedings, volume 7374 of Lecture
 Notes in Computer Science, pages 413-422. Springer, 2012.
-
+%
 \bibitem{TLS13b}
 Marc Fischlin, Felix G\"unther, Benedikt Schmidt, and Bogdan Warinschi. \emph{Key confirmation in key exchange: A formal treatment and implications for TLS 1.3}. In IEEE Symposium on Security and Privacy, SP 2016, San Jose, CA, USA, May 22-26,
 2016, pages 452-469. IEEE Computer Society, 2016.
-
+%
+\bibitem{LWE}
+Gottfried Herold, Elena Kirshanova, Alexander May.
+\textit{On the Asymptotic Complexity of Solving {LWE}}, {IACR} Cryptology ePrint Archive, http://eprint.iacr.org/2015/1222, accepted for publication in Journal Design, Codes and Cryptography, 2015.
+%
+\bibitem{BDD} Elena Kirshanova, Alexander May, Friedrich Wiemer.
+\textit{?Parallel Implementation of BDD enumeration for LWE} , In International Conference on Applied Cryptography and Network Security (ACNS 2016), Lecture Notes in Computer Science, Springer-Verlag, 2016.
+%
+\bibitem{Codes11} Alexander May, Alexander Meurer, Enrico Thomae.
+	\textit{Decoding Random Linear Codes in $O(2^{0.054n})$} , In Advances in Cryptology (Asiacrypt 2011), Lecture Notes in Computer Science, Springer-Verlag, 2011.
+%
+\bibitem{Codes15} Alexander May, Ilya Ozerov.
+\textit{On Computing Nearest Neighbors with Applications to Decoding of Binary Linear Codes} , In Advances in Cryptology (Eurocrypt 2015), Lecture Notes in Computer Science, Springer-Verlag, 2015.
+%
 \end{thebibliography}
 \endgroup
 
@@ -312,15 +327,12 @@ The total duration time of the project is 36 months (3 years). The project durat
 The overall goal of the project is to advance the field of memory-efficient evaluations for the cryptographic problems LWE and LPN, in order to provide sound security estimates even if  required data exceeds reasonable memory bounds. These problems are primary candidates in NIST's search for future, quantum-secure primitives. The research should be carried out for the problems itself, but also for the deployment of the problems in the important setting of key exchange. To this end the following sub goals should be addressed:
 \begin{description}
 %
-\item[Memory Efficient LWE Classically and Quantumly.]
-\item[Memory Efficient Lattice Reduction.]
-\item[Practical Cryptanalysis of NIST's Post-Quantum Candidates.]
-\alex{Vorschläge für Dich.}
-\item[Memory Efficient Reductions?] Das hätte Schnitt mit Eike. Wäre vielleicht gar nicht so schlecht.
-\item[Construction of Post-Quantum Candidate?]
+\item[Memory Efficient Combinatorial/Lattice-Based LWE Algorithms.] We will develop combinatorial and lattice-based algorithms for LWE, both classically and quantumly, with limited memory consumption. Our goal is to precisely predict cryptographic security levels as a function of the LWE parameters $n$, $q$ and the size of the error. Therefore, we will implement our algorithms, run them on medium size instances and extrapolate asymptotically to cryptographically relevant security levels. 
+%
+\item[Practical Cryptanalysis of NIST's Post-Quantum Candidates.] Having combinatorial and lattice-based algorithms for tackling LWE-based cryptographic constructions, we will study the security of recent (and upcoming) proposals for the NIST initiative, such as e.g. New Hope~\cite{ADPS16} and Frodo~\cite{BCDMNNRS16}.
 %
  \item[Analyses of existing LWE/LPN-based Protocols:]
-  The idea is to revisit the existing protocols in light of the findings about the memory requirements for LWE and LPN. The goal is to make statements about the security bounds based on the other results. This requires to check the memory consumption of the reduction and if to verify if solvers for the underlying problems can be directly used in the context of key exchange, e.g., if one can ``stream'' executions of the key exchange protocol to the solver.
+  The idea is to revisit the existing protocols in light of the findings about the memory requirements for LWE and LPN. The goal is to make statements about the security bounds based on the other results. This requires to check the memory consumption of the reduction and to verify if solvers for the underlying problems can be directly used in the context of key exchange, e.g., if one can ``stream'' executions of the key exchange protocol to the solver.
   %
  \item[Combining TLS~1.3 with LWE/LPN:]
  The objective here is to make LWE- and LPN-based key exchange protocols resemble the TLS~1.3 structure more closely. We expect that this will require to introduce a ``PRF-ODH like'' assumption for these problems. The goals here are thus to (a) devise protocols, (b) give a reduction to a suitable LWE- or LPN-based problem, taking the memory requirements into account, and (c) to evaluate the security of the problem in light of the analyses of the original problems in the other part of the project.
@@ -334,8 +346,8 @@ The overall goal of the project is to advance the field of memory-efficient eval
 \subsection{Work programme incl. proposed research methods}
 
 The work program is split into parts addressed by the individual groups and by joint parts.
-Project part A describes the work programme associated to Alexander May,
-Project part B describes the work programme of Marc Fischlin. 
+Project parts A+B describe the work programme associated to Alexander May,
+Project parts C+D describe the work programme of Marc Fischlin. 
 %Part C is a joint part.
 The duration of the individual work packages and their dependencies are described in
 Figure~\ref{fig:WPs}.
@@ -347,14 +359,6 @@ Figure~\ref{fig:WPs}.
 \input{workpackages_mf}
 
 
-\subsubsection{Work package A.1: Memory Efficient LWE Classically and Quantumly}
-Extension of our EC submission to LWE.
-
-\subsubsection{Work Package A.2: Memory Efficient Lattice Reduction}
-Based on our ACNS paper. Integration of BKZ tricks. Finding memory-efficient sieving.
-
-\subsubsection{Work Package A.3: Practical Cryptanalysis of NIST's Post-Quantum Candidates}
-First hits: Frodo and new hope.
 
 %+++ make sure it appears on page 2
 \begin{figure}[t]
@@ -368,13 +372,6 @@ First hits: Frodo and new hope.
 \caption{{\small Work package durations and dependencies.}}\label{fig:WPs}
 \end{figure}
 
-\subsubsection{Work Package B.1:}
-
-\subsubsection{Work Package B.2:}
-
-\subsubsection{Work Package C.1:}
-
-\subsubsection{Work Package C.2:}
 
 \subsection{Data handling}
 
@@ -742,7 +739,7 @@ Phone office: 0234/32-23261\\
 Fax office: 0234/32-14430 \\
 E-Mail: alex.may@rub.de \\[0.3cm]
 Privat address: Im Haarmannsbusch 34, 44797 Bochum\\
-Phone private: 015159-207944\\
+Phone private: 0151-64967032\\
 %
 
 % For each applicant, state the last name, first name, and employment status (including duration of contract and funding body, if on a fixed-term contract).

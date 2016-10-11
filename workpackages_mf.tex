@@ -5,14 +5,14 @@
 The first task is to explore the memory efficiency of the concrete reductions in \cite{P14,BCNS15,ADPS16,BCDMNNRS16}. Such a reduction $\reduc$ from the key exchange protocol takes an adversary $\adv_\text{KE}$ against the protocol, and turns this into an algorithm $\adv_\text{LWE}=\reduc^{\adv_\text{KE}}$ against the underlying algorithmic problem; in the example here for LWE.
 Since one usually considers key exchange protocols in the multi-instance setting of Bellare and Rogaway \cite{BR93}, the reduction usually needs to simulate the multiple instances of the key exchange protocol, at the expense of a significant storage requirement, e.g., if $2^{20}$ instances are running concurrently. This has major impact on the assumed hardness of the underlying problem.
 
-We are therefore interested in the exact effect of the reduction's requirements on the suggested parameter choice. This requires us to determine the exact bounds (in particular, in terms of space) and link them to the findings of Work package \marc{XXXX; link auf ein vorheriges WP}. 
+We are therefore interested in the exact effect of the reduction's requirements on the suggested parameter choice. This requires us to determine the exact bounds (in particular, in terms of space) and link them to the findings of Work package WP~\ref{am:wp:eins}. 
 We also investigate if we can devise better reductions or bounds, e.g., in the sequential execution model.
 
 \marc{Eike war sehr ungluecklich ueber diesen Teil, da er ihm wohl zu nah an derem Proposal ist. Ich weiss nicht mehr genau, wie das war, hatte aber in Erinnerung das wir dadrueber schon in Dagstuhl gesprochen haben, bevor ich das von Eike davon wusste. Habe versucht, das jetzt mal naeher an die konkreten Protokolle ranzuschieben, aber ich glaube, wir brauchen auch einen Link zu deinem Teil.}
 
 \paragraph{Work package \theworkpackage.2: Analysis of Underlying LWE-Problems.}
 
-In this work package we investigate the hardness of the underlying problem(s) proposed in Work packages {\ref{mf:wp:zwei}}.1 and \ref{mf:wp:zwei}.2. This investigation covers several aspects. First, we verify with the results of Work packages \marc{XXXX; link auf ein vorheriges WP} how hard the problem itself seems to be. Secondly, we try to relate the new problem (via memory-efficient reductions) to the standard LWE problem, or try to show that the problem is strictly stronger, by giving a black-box separation result.
+In this work package we investigate the hardness of the underlying problem(s) proposed in Work packages {\ref{mf:wp:zwei}}.1 and \ref{mf:wp:zwei}.2. This investigation covers several aspects. First, we verify with the results of Work packages WP~\ref{am:wp:eins} how hard the problem itself seems to be. Secondly, we try to relate the new problem (via memory-efficient reductions) to the standard LWE problem, or try to show that the problem is strictly stronger, by giving a black-box separation result.
 
 %--
 \refstepcounter{workpackage}\label{mf:wp:zwei}

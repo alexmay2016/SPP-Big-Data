@@ -1,3 +1,4 @@
+%!TEX root = memoc.tex
 \newcounter{workpackage}
 \renewcommand{\theworkpackage}{\Alph{workpackage}}
 \setcounter{workpackage}{0}
@@ -5,21 +6,30 @@
 
 %Referenzen auf WP-Buchstaben am:wp:eins und am:wp:zwei, sowie mf:wp:eins,...
 
-\paragraph{Work package \theworkpackage.1}
+\paragraph{Work package \theworkpackage.1: Memory Efficient Combinatorial LWE Algorithms.}
 
+Our starting point is our preliminary work on LPN~\cite{LPN} that we generalize to arbitrary fields $\F_q$. We expect to obtain a hybrid algorithm that for limited storage is close to decoding algorithms for LWE-type problems, and for large storage is close to the BKW-type algorithm. Especially, analogously to the LPN case, we will divide our algorithm in two steps for dimension-reduction and decoding. The first step makes use of some limited amount of memory to reduce the LWE dimension in a BKW-type manner as far as possible, whereas the second step will decode the resulting LWE-samples in smaller dimension, but maybe with a larger error.
 
-\paragraph{Work package \theworkpackage.2}
+This will lead to an algorithm that can be optimally adapted to any given amount of memory. We will implement our algorithm in $C$, run experiments for medium-size LWE parameters and extrapolate to large cryptographic instances.
 
-text
+\paragraph{Work package \theworkpackage.2: Memory Efficient Lattice Reduction.} 
+
+Our starting point is the preliminary work~\cite{BDD}, where we implemented a step-algorithm for LWE similar to WP A1. In this case, the first step consists in lattice reduction of the matrix defined by the samples. As opposed to WP A1, this does not reduce the dimension but the size of the coefficients. The second step is then a parallel enumeration over all candidates for the LWE secret, which in lattice language is the solution to a closest vector problem.
+
+Our work~\cite{BDD} suffers from the fact that we implemented some non-optimal, but memory-efficient, lattice reduction procedure. Recent lattice sieving techniques~\cite{} are asymptotically much faster, but also require large memory consumption. We will explore possible tradeoffs in lowering the memory consumption of these algorithms by using techniques from streaming algorithms, similar to~\cite{LPN}. This will sacrifice a bit in running time, at the benefit of obtaining implementable and practical algorithms even for large lattice dimension.
 
 %--
 \refstepcounter{workpackage}\label{am:wp:zwei}
 
 
-\paragraph{Work package \theworkpackage.1}
+\paragraph{Work package \theworkpackage.1: Memory Efficient Quantum Algorithms for LWE.}
 
-\paragraph{Work package \theworkpackage.2}
+With the invention of cryptographic systems for the era of quantum computing, it is mandatory to study the best quantum algorithms for LPN and LWE. Many classical algorithms can be significantly speeded up using Quantum Search Techniques, such as e.g. Grover search~\cite{Grover96}.
 
-text
+We will look at possible extensions and improvements of our algorithms in WP~\ref{am:wp:eins} by enhancing them with quantum techniques. This will settle cryptographic quantum key sizes for LWE, similar to the estimates that have been done in~\cite{LPN} for LPN.
 
+In a quantum world, it seems to be even more comprehensible to focus on small memory consumption, since quantum computing devices currently suffer from scalability. Thus, we will focus on algorithms with a quantum memory that is limited linearly (or even sublinear) in the input size.
 
+\paragraph{Work package \theworkpackage.2: Practical Cryptanalysis of NIST Proposals.} In WP~\ref{am:wp:eins} we will develop algorithm for tackling LPN and LWE instances in practice. This will enable us to judge the security levels of current NIST post-quantum cryptographic proposals. Interesting candidates that we will analyze with our algorithms are e.g. New Hope~\cite{ADPS16} and Frodo~\cite{BCDMNNRS16}. 
+
+As the deadline for submitting candidates to NIST is in Nov 2017, we expect to see many more interesting candidates based on the LPN and LWE within the next year that are well-suited for security test by the algorithms developed in WP~\ref{am:wp:eins}.
