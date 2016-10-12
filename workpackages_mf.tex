@@ -21,7 +21,7 @@ In this work package we investigate the hardness of the underlying problem(s) pr
 
 In this work packages we adopt ideas from the TLS~1.2 concept \cite{TLS12} to the suggested LWE-based key exchange protocol designs. The main step is to investigate if one can remove the late signatures in \cite{BCNS15} which make the solution slightly TLS-non-conforming. As discussed in \cite{BCNS15} such a change would most likely imply to switch to a PRF-ODH like assumption, allowing the adversary to mount an active attack against the underlying LWE problem. As pointed out by Peikert \cite{P14}, the problem seems to be easy under such active attacks, though. 
 
-Fortunately, not all is lost: For TLS~1.2 the analysis of Jager et al.~\cite{JKSS12} requires only a very limited form of active attacks in which the adversary can make a single chosen queries only. For such active attacks the LWE problem may still be hard. As an alternative, or second step, we consider other designs possibilities for the key exchange protocol, thwarting this problem by design.
+Fortunately, not all is lost: For TLS~1.2 the analysis of Jager et al.~\cite{JKSS12} requires only a very limited form of active attacks in which the adversary can make a single chosen queries only. For such active attacks the LWE problem may still be hard. As an alternative, or second step, we consider other design possibilities for the key exchange protocol, thwarting this problem by design.
 
 If possible, solutions should be implemented and compared to existing ones.
 

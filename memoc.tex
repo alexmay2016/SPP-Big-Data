@@ -159,7 +159,7 @@ The current project studies low-memory algorithms for problems in coding and lat
 
 
 
-\newpage
+%\newpage
 \section*{Zusammenfassung}
 
 Die Sicherheit kryptographischer Protokolle wird mittels Reduktionen auf die Sicherheit vermeintlich schwerer Probleme zurückgeführt. Solche Reduktionen transformieren einen erfolgreichen Angreifer auf ein Protokoll in einen Algorithmus für das zugrundeliegende Problem. Damit impliziert im Umkehrschluss die Schwere des Problems die Sicherheit des Protokolls. In der Vergangenheit nutzten Kryptographen klassische zahlentheoreti\-sche Probleme wie das RSA-Problem oder das Diskrete Logarithmus Problem. Diese Probleme sind allerdings leicht auf Quantenrechnern zu lösen. Aufgrund der fortschreitenden Entwicklung von Quantenrechnern hat das National Institute of Standards and Technology (NIST) folgerichtig im Herbst 2016 einen Aufruf zur Einreichung quanten-resistenter kryptographischer Primitiven gestartet.
@@ -181,7 +181,7 @@ Big data: The next frontier for innovation, competition, and productivity
 May 2011 
 \fi
 
-\newpage
+%\newpage
 \section{State of the art and preliminary work}
 
 Following the guidelines for applications we report on the state of the art as well as the PI's preliminary work. Although, technical speaking, this is \emph{not} a renewal proposal, the proposal here should continue our participation within the priority program SPP 1736~(Algorithms for Big Data). We therefore report about the achievements of our project SecOBig in the first phase of the program and the reason for discontinuing SecOBig in Section~\ref{sec:secobig}. 
@@ -210,9 +210,9 @@ In November 2017, the National Institute of Standards and Technology (NIST) will
 Most likely, a majority of these systems will be based on problems from coding and lattice theory, such as Learning Parity with Noise (LPN) and Learning with Errors (LWE). But the currently best algorithms for both problems have a memory consumption which is as large as their running time, making them useless for implemention even on medium size security levels. Let us have a closer look at LPN/LWE and their currently best algorithms. 
 
 
-\paragraph{LPN and the BKW algorithm.} In LPN~\cite{DBLP:conf/focs/Alekhnovich03}, one has to find a secret $\mb s \in \F_2^n$ given access to an oracle that outputs samples of the form $(\mb a_i, b_i)$, where $\mb a_i \in_R \F_2^n$ and $b_i = \langle \mb a_i, \mb s \rangle + e_i$ for some Bernoulli error $e_i$. The algorithm of Blum, Kalai and Wasserman (BKW)~\cite{BKW} achieves the best currently known running time $t=2^{\bigO(\frac{n}{\log n})}$ for LPN-samples of dimension $n$, but suffers from requiring also $t$ samples and storing these $t$ samples in memory. Due to its large sample complexity, there is no chance to speed up BKW quantumly, since LPN-samples are inherently classical.
+\paragraph{LPN and the BKW algorithm.} In LPN~\cite{DBLP:conf/focs/Alekhnovich03}, one has to find a secret $\mb s \in \F_2^n$ given access to an oracle that outputs samples of the form $(\mb a_i, b_i)$, where $\mb a_i \in_R \F_2^n$ and $b_i = \langle \mb a_i, \mb s \rangle + e_i$ for some Bernoulli error $e_i$. The algorithm of Blum, Kalai and Wasserman (BKW)~\cite{BKW} achieves the best currently known running time $t=2^{\bigO(\frac{n}{\log n})}$ for constant error, but suffers from requiring to store $t$ samples in memory. Due to its large sample complexity, there is no chance to speed up BKW quantumly, since LPN-samples are inherently classical.
 
-\paragraph{LWE and Lattice Sieving.} LWE~\cite{Regev05} is the extension of LPN to arbitrary fields $\F_q$. Namely, one has to find a secret $\mb s \in \F_q^n$ given access to an oracle that output samples of the form $(\mb a_i, b_i)$, where $\mb a_i \in_R \F_q^n$ and $b_i = \langle \mb a_i, \mb s \rangle + e_i$ for some discrete error $e_i$ whose distribution is centered around $0$ (e.g. a discrete Gaussian). Depending on the LWE-parameters, the best algorithm for LWE is either a generalization of BKW to $\F_q$~\cite{AlbrechtCFFP15} or lattice sieving methods~\cite{DBLP:conf/stoc/AggarwalDRS15}. Both achieve for cryptographic parameter settings a running time of $2^{\bigO(n)}$, using the same amount of memory. Moreover, for both algorithms no significant speed-up via quantum search methods is known. 
+\paragraph{LWE and Lattice Sieving.} LWE~\cite{Regev05} is a generalization of LPN to arbitrary fields $\F_q$. Namely, one has to find a secret $\mb s \in \F_q^n$ given access to an oracle that output samples of the form $(\mb a_i, b_i)$, where $\mb a_i \in_R \F_q^n$ and $b_i = \langle \mb a_i, \mb s \rangle + e_i$ for some discrete error $e_i$ whose distribution is centered around $0$ (e.g. a discrete Gaussian). Depending on the LWE-parameters, the best algorithm for LWE is either a generalization of BKW to $\F_q$~\cite{AlbrechtCFFP15} or lattice sieving~\cite{DBLP:conf/stoc/AggarwalDRS15}. Both algorithms achieve for cryptographic parameter settings a running time of $2^{\bigO(n)}$, consuming the same exponential amount of memory. Moreover, for both algorithms no significant speed-up via quantum search methods is known. 
 
 \paragraph{Deployment of LPN and LWE in Key Exchange Protocols.}
 Analogously to the problem of determining the necessary resources for mounting attacks, in order to make recommendations for secure choices for the underlying problems, we are interested in the security when these problems are deployed in more complex protocols.
@@ -294,7 +294,7 @@ Gottfried Herold, Elena Kirshanova, Alexander May.
 \textit{On the Asymptotic Complexity of Solving {LWE}}, {IACR} Cryptology ePrint Archive, http://eprint.iacr.org/2015/1222, accepted for publication in Journal Design, Codes and Cryptography, 2015.
 %
 \bibitem{BDD} Elena Kirshanova, Alexander May, Friedrich Wiemer.
-\textit{?Parallel Implementation of BDD enumeration for LWE} , In International Conference on Applied Cryptography and Network Security (ACNS 2016), Lecture Notes in Computer Science, Springer-Verlag, 2016.
+\textit{Parallel Implementation of BDD enumeration for LWE} , In International Conference on Applied Cryptography and Network Security (ACNS 2016), Lecture Notes in Computer Science, Springer-Verlag, 2016.
 %
 \bibitem{Codes11} Alexander May, Alexander Meurer, Enrico Thomae.
 	\textit{Decoding Random Linear Codes in $O(2^{0.054n})$} , In Advances in Cryptology (Asiacrypt 2011), Lecture Notes in Computer Science, Springer-Verlag, 2011.
@@ -326,7 +326,7 @@ The total duration time of the project is 36 months (3 years). The project durat
 
 \subsection{Objectives}
 
-The overall goal of the project is to advance the field of memory-efficient evaluations for the cryptographic problems LWE and LPN, in order to provide sound security estimates even if  required data exceeds reasonable memory bounds. These problems are primary candidates in NIST's search for future, quantum-secure primitives. The research should be carried out for the problems itself, but also for the deployment of the problems in the important setting of key exchange. To this end the following sub goals should be addressed:
+The overall goal of the project is to advance the field of memory-efficient evaluations for the cryptographic problems LWE and LPN, in order to provide sound security estimates even if  required data exceeds reasonable memory bounds. These problems are primary candidates in NIST's search for future, quantum-secure primitives. The research should be carried out for the problems itself, but also for the deployment of the problems in the important setting of key exchange. To this end the following sub goals are:
 \begin{description}
 %
 \item[Memory Efficient Combinatorial/Lattice-Based LWE Algorithms.] We will develop combinatorial and lattice-based algorithms for LWE, both classically and quantumly, with limited memory consumption. Our goal is to precisely predict cryptographic security levels as a function of the LWE parameters $n$, $q$ and the size of the error. Therefore, we will implement our algorithms, run them on medium size instances and extrapolate asymptotically to cryptographically relevant security levels. 
@@ -334,7 +334,7 @@ The overall goal of the project is to advance the field of memory-efficient eval
 \item[Practical Cryptanalysis of NIST's Post-Quantum Candidates.] Having combinatorial and lattice-based algorithms for tackling LWE-based cryptographic constructions, we will study the security of recent (and upcoming) proposals for the NIST initiative, such as e.g. New Hope~\cite{ADPS16} and Frodo~\cite{BCDMNNRS16}.
 %
  \item[Analyses of existing LWE/LPN-based Protocols:]
-  The idea is to revisit the existing protocols in light of the findings about the memory requirements for LWE and LPN. The goal is to make statements about the security bounds based on the other results. This requires to check the memory consumption of the reduction and to verify if solvers for the underlying problems can be directly used in the context of key exchange, e.g., if one can ``stream'' executions of the key exchange protocol to the solver.
+  The idea is to revisit the existing protocols in light of the findings about the memory requirements for LWE and LPN. The goal is to make statements about the security bounds based on these results. This requires to check the memory consumption of the reduction and to verify if solvers for the underlying problems can be directly used in the context of key exchange, e.g., if one can ``stream'' executions of the key exchange protocol to the solver.
   %
  \item[Combining TLS~1.3 with LWE/LPN:]
  The objective here is to make LWE- and LPN-based key exchange protocols resemble the TLS~1.3 structure more closely. We expect that this will require to introduce a ``PRF-ODH like'' assumption for these problems. The goals here are thus to (a) devise protocols, (b) give a reduction to a suitable LWE- or LPN-based problem, taking the memory requirements into account, and (c) to evaluate the security of the problem in light of the analyses of the original problems in the other part of the project.
@@ -347,9 +347,9 @@ The overall goal of the project is to advance the field of memory-efficient eval
 
 \subsection{Work programme incl. proposed research methods}
 
-The work program is split into parts addressed by the individual groups and by joint parts.
+The work programme is split into 4 parts.
 Project parts A+B describe the work programme associated to Alexander May,
-Project parts C+D describe the work programme of Marc Fischlin. 
+project parts C+D describe the work programme of Marc Fischlin. 
 %Part C is a joint part.
 The duration of the individual work packages and their dependencies are described in
 Figure~\ref{fig:WPs}.
@@ -385,10 +385,10 @@ Figure~\ref{fig:WPs}.
   \ganttlinkedbar{Work package A.2}{10}{24} \ganttnewline
   
   % Workpackage B
-  \ganttgroup{Work package B}{6}{36} \\
-  \ganttbar{Work package B.1}{10}{13}
-  \ganttbar{Work package B.1}{25}{28} \\
-  \ganttbar{Work package B.2}{6}{36} \ganttnewline
+  \ganttgroup{Work package B}{10}{36} \\
+  \ganttbar{Work package B.1}{10}{12}
+  \ganttbar{Work package B.1}{25}{27} \\
+  \ganttbar{Work package B.2}{13}{36} \ganttnewline
     
   % Workpackage C
   \ganttgroup{Work package C}{19}{36} \\
@@ -406,13 +406,14 @@ Figure~\ref{fig:WPs}.
     \ganttlink{elem1}{elem6}
     \ganttlink{elem2}{elem6}
     \ganttlink{elem1}{elem8}
-    \ganttlink{elem2}{elem8}
+    \ganttlink{elem2}{elem9}
  \end{ganttchart}
  
 \end{adjustbox}
 %\end{landscape}
-
+%
 \end{center}
+\vskip -0.6cm
 \caption{{\small Work package durations and dependencies.}}\label{fig:WPs}
 \end{figure}
 
@@ -660,7 +661,7 @@ Due to competitive nature of positions in Computer Science and in the area of IT
 funding for full doctoral student positions (100\%). We apply for funding of two doctoral
 students for the entire duration of the project. One student will be associated to TU Darmstadt (TUD)
 and work on packages \ref{mf:wp:eins} and \ref{mf:wp:zwei}, the other student will be associated to Ruhr-University Bochum (RUB)
-and work on packages \ref{am:wp:eins} and \ref{am:wp:zwei}. Student Assistents (one for each project partner) have been calculated with 10h/months
+and work on packages \ref{am:wp:eins} and \ref{am:wp:zwei}. Student assistents (one for each project partner) have been calculated with 10h/months
 for the full duration of the project, with average costs of 11 EUR/h. They should support the implementations
 in the corresponding work packages.
 
@@ -772,8 +773,6 @@ E-Mail: marc.fischlin@cryptoplexity.de \\[0.3cm]
 Privat address: Charlotte-Posenenske-Str.58, 65197 Wiesbaden\\
 Phone private: +49-(0)611/9882730\\ \\
 
-
-
 \noindent {\bf Alexander May}, Dr. rer. nat\\
 W3-Professor \\
 Year of birth: 1974, Nationality German \\[0.3cm]
@@ -874,6 +873,7 @@ We also plan to cooperate with Prof.~Ulrich Meyer (Johann Wolfgang Goethe-Univer
 %
 \fi
 
+\newpage
 \subsubsection*{Researchers with whom you have collaborated scientifically within the past three years}
 
 \textbf{Marc Fischlin:}
@@ -891,7 +891,7 @@ We also plan to cooperate with Prof.~Ulrich Meyer (Johann Wolfgang Goethe-Univer
 \noindent
 \textbf{Alexander May:}
 \begin{itemize}
-\item Prof. Eike Kiltz (Ruhr-University Bochum)
+%\item Prof. Eike Kiltz (Ruhr-University Bochum)
 \item Prof. Johannes Bl\"omer (Paderborn University)
 \item Prof. Christian Sohler (TU Dortmund)
 \item Prof. Alon Rosen (Herzliya, Israel)
