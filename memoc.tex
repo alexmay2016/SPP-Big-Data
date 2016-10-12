@@ -124,7 +124,7 @@ the National Institute of Standards and Technology (NIST) announced a call for q
 Most likely, the majority of reasonable candidates for the NIST competition will be based on hard problems from coding theory and lattices, such as Learning Parity with Noise (LPN) and Learning with Errors (LWE). NIST requests well-defined security levels of 128, 192 and 256 bits classically, and 64, 80, 128 bits quantumly. This means that for instantiating LPN with, say, 128 bit classical security, one has to make sure that any algorithm for LPN will need at least $2^{128}$ steps on a classical computer. 
 
 Since running times of $2^{128}$ escape current computational power,
-one nowadays typically studies medium security levels of $50-60$ bits in practical experiments, and then extrapolates via asymptotic formulas to the desired security level to make a reasonable security claim. However, besides running time, the memory requirement is also major factor. In fact, for the interesting problems LPN and LWE current algorithms also require to store an exponential number of samples. This huge amount of data and its storage requirement do not allow to run experiments even for medium security levels, and thus prevent a reliable prediction of cryptographically secure key sizes.
+one nowadays typically studies medium security levels of $50-60$ bits in practical experiments, and then extrapolates via asymptotic formulas to the desired security level to make a reasonable security claim. However, besides running time, the memory requirement is a major factor. In fact, for the interesting problems LPN and LWE current algorithms also require to store an exponential number of samples. This huge amount of data and its storage requirement do not allow to run experiments even for medium security levels, and thus prevent a reliable prediction of cryptographically secure key sizes.
 
 %\marc{das koennte noch 1-2 Saetze laenger sein:}
 The current project studies low-memory algorithms for problems in coding and lattice theory, and how this translates to the case when these problems are deployed in one of the prevailing applications of modern cryptography, namely, key exchange protocols. 
@@ -136,7 +136,6 @@ The current project studies low-memory algorithms for problems in coding and lat
 \iffalse
 The security of cryptographic protocols is related via reductions to the security of hard problems.
 A cryptographic security proof states that any successful adversary that breaks a cryptographic protocol $\Pi$ in time $t$ can be translated into an algorithm that breaks a hard problem in time $t'$. In order to instantiate cryptographic protocols $\Pi$ efficiently, one has to first find a tight security proof that closely links $\Pi$ to a hard problem, i.e. a reduction for which $t'$ is not much larger than $t$. Second, one has to make sure that any algorithm for the hard problem runs in time larger than $t'$. 
-%This would then in turn show that there cannot be any adversary for $\pi$, since it would imply a faster algorithm for the hard problem.
 
 In the past, cryptography relied on well studied hard problems from number-theory, such as factoring integers and computing discrete logarithms in elliptic curves. However, these problems stay no longer hard in the presence of quantum computers. Therefore, the NIST (National Institute of Standards and Technology) announced in autumn 2016 a call for Post-Quantum cryptographic primitives.
 %, i.e. encryption, signature and key exchange. Candidates have to be submitted by Nov 2017 and then undergo a period of 3-5 of cryptanalytic research.
@@ -352,7 +351,7 @@ Project parts C+D describe the work programme of Marc Fischlin.
 The duration of the individual work packages and their dependencies are described in
 Figure~\ref{fig:WPs}.
 
-\marc{hm, wir muessten da vielleicht noch die Abhaengigkeiten/Laufzeiten beschreiben. Ich wuerde sequentiell durchgehen: D1 (8 Mo), D2 (10 Mo), C1 (6 Mo), C2 (12 Mo), mit der Begruendung, dass ich in C erst auf eure ersten Analysen warten muss}
+%\marc{hm, wir muessten da vielleicht noch die Abhaengigkeiten/Laufzeiten beschreiben. Ich wuerde sequentiell durchgehen: D1 (8 Mo), D2 (10 Mo), C1 (6 Mo), C2 (12 Mo), mit der Begruendung, dass ich in C erst auf eure ersten Analysen warten muss}
 
 
 \input{workpackages_am}
@@ -380,7 +379,7 @@ dissemination and availability of the project's results. In addition, we will us
 like IACR's \texttt{eprint} service, and the PI's home pages to make full versions available in a lasting way.
 As for experimental data, like software, we will also make these public, as part of the corresponding publication,
 and through electronic archives like GitHub.
-\marc{lizenz? Open Source?}
+%\marc{lizenz? Open Source?}
 
 
 \subsection{Other information}
@@ -626,8 +625,8 @@ in the corresponding work packages.
 \begin{tabular}{|l||l|l|l||r|r|r|}
  \hline No &  Type & assoc.~to & Description & Y1 & Y2 & Y3\\
  \hline \hline
- 1 & Doctoral Student, 100\%  & TUD & WP B.1, B.2,C.1 & 61,800\euro & 61,800\euro & 61,800\euro \\
- 2 & Doctoral Student, 100\%  & RUB& WP A.1,A.2,C.1 & 61,800\euro & 61,800\euro & 61,800\euro\\
+ 1 & Doctoral Student, 100\%  & TUD & WP \ref{mf:wp:eins} and \ref{mf:wp:zwei} & 61,800\euro & 61,800\euro & 61,800\euro \\
+ 2 & Doctoral Student, 100\%  & RUB& WP \ref{am:wp:eins} and \ref{am:wp:zwei} & 61,800\euro & 61,800\euro & 61,800\euro\\
  3 & Student Assistent, 100\% & TUD & Implementations & 1,320\euro & 1,320\euro & 1,320\euro\\
  4 & Student Assistent, 100\% & RUB & Implementations & 1,320\euro & 1,320\euro & 1,320\euro \\
  \hline
@@ -647,11 +646,12 @@ in the corresponding work packages.
 \subsubsection{Direct Project Costs}
 
 
-\paragraph{Equipment up to EUR 10,000, Software and Consumables.}
-\marc{hier brauchen wir diesmal nix, oder?}
-We request an overall funding of 3,000 EUR for each applicant over the entire project duration, 6,000 EUR in total,
-to carry out experiments in Amazon's commercial Elastic MapReduce. Using Amazon's platform instead of local
-computing centers of both universities allows for an easier benchmarking and a smoother collaboration.
+%\paragraph{Equipment up to EUR 10,000, Software and Consumables.\\}
+%\noindent Not requested.
+%\marc{hier brauchen wir diesmal nix, oder?}
+%We request an overall funding of 3,000 EUR for each applicant over the entire project duration, 6,000 EUR in total,
+%to carry out experiments in Amazon's commercial Elastic MapReduce. Using Amazon's platform instead of local
+%computing centers of both universities allows for an easier benchmarking and a smoother collaboration.
 
 \paragraph{Travel Expenses.}
 We apply for 8,000 Euro travel funding per year, i.e. for a total travel funding of 24,000 Euro.
@@ -730,7 +730,7 @@ Phone private: +49-(0)611/9882730\\ \\
 
 
 \noindent {\bf Alexander May}, Dr. rer. nat\\
-W3-Professor (tenured)\\
+W3-Professor \\
 Year of birth: 1974, Nationality German \\[0.3cm]
 Faculty of Mathematics, NA 5/73\\
 Ruhr-University Bochum\\
@@ -776,12 +776,12 @@ Support: 1 secretary.
 \noindent
 {\bf Ruhr-University Bochum:}
 \begin{itemize}
-\item Prof. Dr. Alexander May, chair of the group Crypto \& IT security
-\item Emmy Noether group leader Dr. Christopher Wolf (associated)
-\item Dipl.-Math. Gottfried Herold 
-\item Dipl.-Ing. Ilya Ozerov (funded by SPP 1307 -- Algorithm Engineering) 
-\item Dipl.-Math. Elena Kirshanova (funded by GRK 1817 -- Ubiquitous Cryptography)
-\item Dipl.-Ing. Stefan Hoffman (third party funding) 
+\item Prof. Dr. Alexander May, Chair for Cryptology \& IT security. Founded through RU Bochum.
+\item Dipl.-Math. Elena Kirshanova. Funded through RU Bochum; expected to leave till project start.
+\item Dipl.-Math. Robert Kübler. Funded through DFG-SPP 1736 -- Big Data.
+\item MSc (Math) Leif Both. Funded through third party.
+\item Dipl.-Ing. Matthias Minihold. Funded through ECRYPT-CSA within EU H2020. 
+\item Dip.-Ing. Andre Esser. Founded through DFG-GRK 1817 -- Ubiquitous Cryptography
 \end{itemize}
 Support: 1 secretary and 1 technical assistant.
 
@@ -793,12 +793,18 @@ Support: 1 secretary and 1 technical assistant.
 
 %We plan to continue our cooperations with the following colleagues:
 
-\marc{ziemlich dumm eigentlich, dass nach uns aufzuteilen; macht keinen kollaborativen Eindruck...}
+%\marc{ziemlich dumm eigentlich, dass nach uns aufzuteilen; macht keinen kollaborativen Eindruck...}
 
 
-We plan to cooperate with Prof.~Dennis Hofheinz (KIT, Germany) and Prof.~Eike Kiltz (RUB, Germany) on the question of memory-efficient reductions. Prof.~Kiltz and Prof.~Hofheinz have participated in the first phase of the Priority Program 1736 (Algorithms for Big Data) jointly on a project about tight security reductions and plan to continue their collaboration in the next phase.
+We plan to cooperate with Prof.~Dennis Hofheinz (KIT, Germany) and Prof.~Eike Kiltz (RUB, Germany) on the question of memory-efficient reductions. Prof.~Hofheinz and Prof.~Kiltz have participated in the first phase of the Priority Program 1736 (Algorithms for Big Data) jointly on a project about tight security reductions and plan to continue their collaboration in the next phase.
 
-\marc{Meyer}
+We also plan to cooperate with Prof.~Ulrich Meyer (Johann Wolfgang Goethe-Universität Frankfurt, Germany) on the question whether external memory techniques can be successfully applied for the LPN/LWE scenario. Prof.~Meyer had a project on online methods in the first phase and plans to continue this project in the next phase.
+
+
+
+
+
+%\marc{Meyer}
 
 
 \iffalse
@@ -840,17 +846,18 @@ We plan to cooperate with Prof.~Dennis Hofheinz (KIT, Germany) and Prof.~Eike Ki
 \noindent
 \textbf{Alexander May:}
 \begin{itemize}
-\item Professors Eike Kiltz and Hans Simon (Ruhr-University Bochum)
-\item Professor Antoine Joux (University Versailles)
-\item Professor Johannes Bl\"omer (Paderborn University)
-\item Professor Nigel Smart (University of Bristol, UK)
+\item Prof. Eike Kiltz (Ruhr-University Bochum)
+\item Prof. Johannes Bl\"omer (Paderborn University)
+\item Prof. Christian Sohler (TU Dortmund)
+\item Prof. Alon Rosen (Herzliya, Israel)
 \end{itemize}
 
 
 \subsection{Scientific equipment}
 
-Besides standard equipment the project partners 
-\textbf{ich brauche nix besonderes!!!!}
+Not requested.
+%Besides standard equipment the project partners 
+%\textbf{ich brauche nix besonderes!!!!}
 
 
 \subsection{Project-relevant interests in commercial enterprises}
