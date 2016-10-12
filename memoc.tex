@@ -2,6 +2,9 @@
 \usepackage[a4paper,hmargin=1in,vmargin=1.25in]{geometry}
 
 %\usepackage{german}
+\usepackage{pgfgantt} % Gantt-Chart
+\usepackage{adjustbox} 	% to resize a object to textwidth
+\usepackage{pdflscape}  % to use \begin{landscape} testText \end{landscape}
 \usepackage{latexsym,wrapfig}
 \usepackage{amsmath,amssymb}
 \usepackage{epsfig,color,colordvi}
@@ -181,7 +184,7 @@ May 2011
 \newpage
 \section{State of the art and preliminary work}
 
-Following the guidelines for applications we report on the state of the art as well as the PI's preliminary work. Although, technical speaking, this is \emph{not} a renewal proposal, the proposal here should continue our participation within the priority program SPP 1736 -- Algorithms for Big Data. We therefore report about the achievements of our project SecOBig in the first phase of the program and the reason for discontinuing SecOBig in Section~\ref{sec:secobig}. 
+Following the guidelines for applications we report on the state of the art as well as the PI's preliminary work. Although, technical speaking, this is \emph{not} a renewal proposal, the proposal here should continue our participation within the priority program SPP 1736~(Algorithms for Big Data). We therefore report about the achievements of our project SecOBig in the first phase of the program and the reason for discontinuing SecOBig in Section~\ref{sec:secobig}. 
 
 \subsection{State of the art}
 
@@ -194,7 +197,7 @@ For analyzing and instantiating cryptographic systems one usually  focuses on th
 
 In cryptography, however, the space requirement for an attack can be a significant factor.
 %While it is in general a good idea to define cryptographic security in a conservative manner, this does not properly reflect practice. 
-While performing $2^{60}$ operations today is considered to be feasible, even on a medium-sized computing cluster in a reasonable amount of time, any algorithm with RAM consumption $2^{60}$ bits will not be implementable in the near future. An Internet investigation shows that nowadays the largest supercomputers\footnote{e.g. the IBM 20-Petaflops cluster installed in Sequoia, Lawrence Livermore National Laboratory, California} have a RAM of at most 1.6 PB $<2^{54}$ bits. If an algorithm has to use external memory, then its running time slows down significantly.
+While performing $2^{60}$ operations today is considered to be feasible, even on a medium-sized computing cluster in a reasonable amount of time, any algorithm with RAM consumption $2^{60}$ bits will not be implementable in the near future. An Internet investigation shows that nowadays the largest supercomputers\footnote{e.g. the IBM 20-Petaflops cluster installed in Sequoia, Lawrence Livermore National Laboratory, California} have a RAM of at most 1.6 PB $<2^{54}$ bits. If an algorithm has to use external memory, then its running time usually slows down significantly.
 
 Hence, for estimating the security of cryptographic constructions one should also consider an upper bound on the memory consumption. This in turn defines a need for finding efficient algorithms with small memory consumption. 
 
@@ -204,10 +207,10 @@ In this proposal we combine the question of memory consumption with a recent dev
 %This is even more urgent for the most prominent candidates for Post-Quantum Cryptography. 
 
 In November 2017, the National Institute of Standards and Technology (NIST) will open a call for candidates of cryptosystems for encryption, signature and key exchange, which are presumably immune to quantum attacks. The candidates will then undergo a period of 3-5 years of cryptanalytic research, before a recommendation is made. 
-Most likely, a majority of these systems will be based on problems from coding and lattice theory, such as Learning Parity with Noise (LPN) and Learning with Errors (LWE). But the currently best algorithms for both problems have a memory consumption which is as large as their running time, making them useless for implemention even on medium size security levels.
+Most likely, a majority of these systems will be based on problems from coding and lattice theory, such as Learning Parity with Noise (LPN) and Learning with Errors (LWE). But the currently best algorithms for both problems have a memory consumption which is as large as their running time, making them useless for implemention even on medium size security levels. Let us have a closer look at LPN/LWE and their currently best algorithms. 
 
 
-\paragraph{LPN and the BKW algorithm.} In LPN~\cite{DBLP:conf/focs/Alekhnovich03}, one has to find a secret $\mb s \in \F_2^n$ given access to an oracle that output samples of the form $(\mb a_i, b_i)$, where $\mb a_i \in_R \F_2^n$ and $b_i = \langle \mb a_i, \mb s \rangle + e_i$ for some Bernoulli error $e_i$. The algorithm of Blum, Kalai and Wasserman (BKW)~\cite{} achieves the best currently known running time $t=2^{\bigO(\frac{n}{\log n})}$ for LPN-samples of dimension $n$, but suffers from requiring also $t$ samples and storing these $t$ samples in memory. Due to its large sample complexity, there is no chance to speed up BKW quantumly, since LPN-samples are inherently classical.
+\paragraph{LPN and the BKW algorithm.} In LPN~\cite{DBLP:conf/focs/Alekhnovich03}, one has to find a secret $\mb s \in \F_2^n$ given access to an oracle that outputs samples of the form $(\mb a_i, b_i)$, where $\mb a_i \in_R \F_2^n$ and $b_i = \langle \mb a_i, \mb s \rangle + e_i$ for some Bernoulli error $e_i$. The algorithm of Blum, Kalai and Wasserman (BKW)~\cite{BKW} achieves the best currently known running time $t=2^{\bigO(\frac{n}{\log n})}$ for LPN-samples of dimension $n$, but suffers from requiring also $t$ samples and storing these $t$ samples in memory. Due to its large sample complexity, there is no chance to speed up BKW quantumly, since LPN-samples are inherently classical.
 
 \paragraph{LWE and Lattice Sieving.} LWE~\cite{Regev05} is the extension of LPN to arbitrary fields $\F_q$. Namely, one has to find a secret $\mb s \in \F_q^n$ given access to an oracle that output samples of the form $(\mb a_i, b_i)$, where $\mb a_i \in_R \F_q^n$ and $b_i = \langle \mb a_i, \mb s \rangle + e_i$ for some discrete error $e_i$ whose distribution is centered around $0$ (e.g. a discrete Gaussian). Depending on the LWE-parameters, the best algorithm for LWE is either a generalization of BKW to $\F_q$~\cite{AlbrechtCFFP15} or lattice sieving methods~\cite{DBLP:conf/stoc/AggarwalDRS15}. Both achieve for cryptographic parameter settings a running time of $2^{\bigO(n)}$, using the same amount of memory. Moreover, for both algorithms no significant speed-up via quantum search methods is known. 
 
@@ -360,13 +363,55 @@ Figure~\ref{fig:WPs}.
 
 
 %+++ make sure it appears on page 2
-\begin{figure}[t]
+\begin{figure}[ht]
 \begin{center}
-%\ifpdf
-% \includegraphics[width=0.7\textwidth]{overview.pdf}
-%\else
-% \includegraphics[width=0.75\textwidth]{WPs}
-%\fi
+%\begin{landscape}
+\begin{adjustbox}{max width=0.7 \textwidth}
+
+ \begin{ganttchart}[vgrid, % display vertical grid
+ title height=1, % make number-boxes higher
+ bar/.style={fill=blue!80}, % reset style
+ bar height=0.5, % ...
+ group/.append style={fill=blue!40}, %  append to style
+ group height=.3, % ...
+ ]{1}{36} 
+ 
+% \gantttitle{ \textbf{Workpackages \& Tasks - Overview} }{36} \\
+ \gantttitlelist{1,...,36}{1} \\
+ 
+  % Workpackage A (elem0, elem1, ...)
+  \ganttgroup{Work package A}{1}{24} \\
+  \ganttbar{Work package A.1}{1}{9} \\
+  \ganttlinkedbar{Work package A.2}{10}{24} \ganttnewline
+  
+  % Workpackage B
+  \ganttgroup{Work package B}{6}{36} \\
+  \ganttbar{Work package B.1}{10}{13}
+  \ganttbar{Work package B.1}{25}{28} \\
+  \ganttbar{Work package B.2}{6}{36} \ganttnewline
+    
+  % Workpackage C
+  \ganttgroup{Work package C}{19}{36} \\
+  \ganttbar{Work package C.1}{19}{24} \\
+  \ganttlinkedbar{Work package C.2}{25}{36} \ganttnewline
+     
+  % Workpackage D
+  \ganttgroup{Work package D}{1}{18} \\
+  \ganttbar{Work package D.1}{1}{8} \\
+  \ganttlinkedbar{Work package D.2}{9}{18} \ganttnewline
+   
+  % Inter-Workpackage Links
+    \ganttlink{elem2}{elem5}
+    \ganttlink{elem1}{elem4}
+    \ganttlink{elem1}{elem6}
+    \ganttlink{elem2}{elem6}
+    \ganttlink{elem1}{elem8}
+    \ganttlink{elem2}{elem8}
+ \end{ganttchart}
+ 
+\end{adjustbox}
+%\end{landscape}
+
 \end{center}
 \caption{{\small Work package durations and dependencies.}}\label{fig:WPs}
 \end{figure}
